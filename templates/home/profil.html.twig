@@ -4,6 +4,8 @@
 
 {% block body %}
 
-<h1> Bienvenue sur votre tableau de bord, {{ app.user.prenom}} {{app.user.nom }}</h1>
+<p>Prénom : {{ app.user.prenom}}</p>  
+<p>Nom : {{app.user.nom }}</p>
+<p>Email : {{app.user.email }} </p>
 
 {% endblock %}

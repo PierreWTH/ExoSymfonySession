@@ -13,6 +13,29 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
+
+    <nav>
+        {% if app.user %}
+        <a href="{{ path('app_home') }}">LOGO</a>
+        <a href="{{ path('app_formation') }}">FORMATION</a>
+        <a href="{{ path('app_session') }}">SESSION</a>
+        <a href="{{ path('app_stagiaire') }}">STAGIAIRES</a>
+        <a href="{{ path('app_formateur') }}">FORMATEURS</a>
+        <a href="{{ path('app_categorie') }}">CATEGORIE</a>
+        <a href="{{ path('app_logout') }}">Se deconnecter</a>
+        <a href="{{ path('app_profil') }}">Mon profil</a>
+
+        {% else %}
+
+        <a href="{{ path('app_login') }}">Se connecter</a>
+        <a href="{{ path('app_register') }}">S'inscrire</a>
+
+        {% endif %}
+        
+
+
+    </nav>
+
     <body>
         {% block body %}{% endblock %}
     </body>

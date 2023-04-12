@@ -6,7 +6,7 @@
 
 <h1> Liste des stagiaires </h1>
 
-<a href="{{path ('add_stagiaire')}}">Ajouter un stagiaire</a>
+<a href="{{path ('add_stagiaire')}}">Ajouter un stagiaire</a> 
 
 <table>
     <thead>
@@ -21,7 +21,7 @@
         {% for stagiaire in stagiaires %}
         <tr>
             <td><a href="{{path ('detail_stagiaire', {id : stagiaire.id })}}">{{stagiaire.prenom}}</a></td>
-            <td>{{stagiaire.nom}}</td>
+            <td>{{stagiaire.nom}}<a href="{{path ('edit_stagiaire', {id : stagiaire.id })}}">Editer</a></td>
         
 
         </tr>

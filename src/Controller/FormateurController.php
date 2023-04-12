@@ -25,8 +25,13 @@ class FormateurController extends AbstractController
     }
      // Ajouter un formateur
      #[Route('/formateur/add', name: 'add_formateur')]
+     #[Route('/formateur/{id}/edit', name: 'edit_formateur')]
      public function add(ManagerRegistry $doctrine, Formateur $formateur = null, Request $request) : response
      {
+        if(!$formateur){
+            $formateur = new Formateur();
+        }
+
          // Creation du formulaire et objet qu'on lui fait passer
          $form = $this->createForm(FormateurType::class, $formateur);
  

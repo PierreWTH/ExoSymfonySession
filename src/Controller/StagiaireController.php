@@ -26,10 +26,17 @@ class StagiaireController extends AbstractController
         ]);
     }
 
-    // Ajouter un stagiaire
+    // Ajouter ou editer un stagiaire
     #[Route('/stagiaire/add', name: 'add_stagiaire')]
+    #[Route('/stagiaire/{id}/edit', name: 'edit_stagiaire')]
+
     public function add(ManagerRegistry $doctrine, Stagiaire $stagiaire = null, Request $request) : response
     {
+
+        if(!$stagiaire){
+            $stagiaire = new Stagiaire();
+        }
+
         // Creation du formulaire et objet qu'on lui fait passer
         $form = $this->createForm(StagiaireType::class, $stagiaire);
 

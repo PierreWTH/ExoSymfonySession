@@ -19,7 +19,7 @@
         {% for formateur in formateurs %}
         <tr>
             <td><a href="{{path ('detail_formateur', {id : formateur.id })}}">{{formateur.prenom}}</a></td>
-            <td>{{formateur.nom}}</td>
+            <td>{{formateur.nom}}<a href="{{path ('edit_formateur', {id : formateur.id })}}">Editer</a></td>
         </tr>
         {% endfor %}
     </tbody>

@@ -4,6 +4,8 @@
 
 {% block body %}
 
+
+
 <h1> Détail de la session </h1>
 
 <p> Formateur référent : {{session.formateur.nom}} {{session.formateur.prenom}}</p>
@@ -73,25 +75,8 @@
     </tbody>
 </table>
 
-<h2> Modules non programmés </h2>
+<h2> Modules non programmés ( A FAIRE )</h2>
 
-<table>
-    <thead>
-        <tr>
-            <th>Stagiaires</th>
-            <th>Inscrire</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for module in modules %}
-        {% if module.id not in session.programme.module %}
-        <tr>
-            <td>{{module.nomModule}}</td>
-        </tr>
-        {% endif %}
-        {% endfor %}
-        
-    </tbody>
-</table>
+
 
 {% endblock %}

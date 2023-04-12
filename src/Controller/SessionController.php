@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Modules;
 use App\Entity\Session;
+use App\Entity\Programme;
 use App\Entity\Stagiaire;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,7 +31,7 @@ class SessionController extends AbstractController
         return $this->render('session/detail.html.twig', [
             'session' => $session,
             'stagiaires' => $stagiaires,
-            'modules'=>$modules
+            'modules'=>$modules,
         ]);
     }
 }

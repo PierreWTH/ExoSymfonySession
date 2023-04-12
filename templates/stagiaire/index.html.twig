@@ -6,11 +6,15 @@
 
 <h1> Liste des stagiaires </h1>
 
+<a href="{{path ('add_stagiaire')}}">Ajouter un stagiaire</a>
+
 <table>
     <thead>
         <tr>
             <th>Nom</th>
             <th>Prenom</th>
+            
+            
         </tr>
     </thead>
     <tbody>
@@ -18,6 +22,8 @@
         <tr>
             <td><a href="{{path ('detail_stagiaire', {id : stagiaire.id })}}">{{stagiaire.prenom}}</a></td>
             <td>{{stagiaire.nom}}</td>
+        
+
         </tr>
         {% endfor %}
     </tbody>

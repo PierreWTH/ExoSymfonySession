@@ -23,15 +23,20 @@ class SessionController extends AbstractController
 
     // Afficher les details d'une session
     #[Route('/session/{id}', name: 'detail_session')]
-    public function detail(Session $session, ManagerRegistry $doctrine): Response
+    public function detail(Session $session, ManagerRegistry $doctrine, $id): Response
     {   
         $stagiaires = $doctrine->getRepository(Stagiaire::Class)->findBy([], ["nom"=>"ASC"]);
         $modules = $doctrine->getRepository(Modules::Class)->findBy([], ["nomModule"=>"ASC"]);
+        $modulesBySession = $doctrine->getRepository(Programme::Class)->findBy(["sessions"=> $id], []);
 
         return $this->render('session/detail.html.twig', [
             'session' => $session,
             'stagiaires' => $stagiaires,
             'modules'=>$modules,
+            'modulesBySession'=>$modulesBySession
         ]);
     }
+
+
+    
 }

@@ -74,4 +74,16 @@ class StagiaireController extends AbstractController
             'stagiaire' => $stagiaire
         ]);
     }
+
+    // Supprimer un stagiaire
+    #[Route('/stagiaire/{id}/delete', name: 'delete_stagiaire')]
+    public function delete(ManagerRegistry $doctrine, Stagiaire $stagiaire): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($stagiaire);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_stagiaire');
+    }
+    
 }

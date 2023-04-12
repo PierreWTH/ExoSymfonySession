@@ -76,7 +76,7 @@
     </tbody>
 </table>
 
-<h2> Modules non programmés ( A FAIRE )</h2>
+<h2> Modules non programmés </h2>
 
 <table>
     <thead>
@@ -88,12 +88,10 @@
     </thead>
     <tbody>
         {% for module in modules %}
-        {% if module.id not in modulesBySession %}
-        
-        {{ dump(module.id) }}
-        {{ dump(modulesBySession) }}
+        {% if module.id not in modulesBySession|map(item => item.modules.id)%}
         <tr>
             <td> {{module.nomModule}} </td>
+            <td> {{module.categorie.nomCategorie}} </td>
         </tr>
             
         {% endif %}

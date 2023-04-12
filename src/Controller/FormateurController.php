@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Formateur;
+use App\Form\FormateurType;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,6 +23,38 @@ class FormateurController extends AbstractController
             'formateurs' => $formateurs
         ]);
     }
+     // Ajouter un formateur
+     #[Route('/formateur/add', name: 'add_formateur')]
+     public function add(ManagerRegistry $doctrine, Formateur $formateur = null, Request $request) : response
+     {
+         // Creation du formulaire et objet qu'on lui fait passer
+         $form = $this->createForm(FormateurType::class, $formateur);
+ 
+         //Récuperation des données du formulaire
+         $form->handleRequest($request);
+ 
+         // Vérification si le form est soumis et si les données sont saines
+         if($form->isSubmitted() && $form->isValid())
+         {   
+             // On hydrate l'objet formateur qu'on a crée avec les données du formulaire
+             $formateur = $form->getData();
+             // On récupère l'entity Manager pour avoir acces a persist et flush
+             $entityManager = $doctrine->getManager();
+             // On prépare l'objet
+             $entityManager->persist($formateur);
+             // On l'execute
+             $entityManager->flush();
+ 
+             return $this->redirectToRoute('app_formateur');
+         }
+ 
+         // Vue qui vas afficher le formulaire
+         return $this->render('formateur/add.html.twig', [
+             //generer le formulaire visuellement quand on utilise formAddformateur
+             'formAddFormateur' => $form->createView()
+             
+         ]);
+     }
 
     // Afficher les details d'un formateur
     #[Route('/formateur/{id}', name: 'detail_formateur')]

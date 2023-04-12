@@ -6,4 +6,90 @@
 
 <h1> Bienvenue sur votre tableau de bord, {{ app.user.prenom}} {{app.user.nom }}</h1>
 
+<h2>Sessions en cours : </h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Formation</th>
+            <th>Nom de la session </th>
+            
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Inscrits</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessions %}
+        {% if session.dateDebut|date('d/m/Y') <= 'now'|date('d/m/Y') and session.dateFin|date('d/m/Y') >= 'now'|date('d/m/Y')%}
+        <tr>
+            <td>{{session.formation.nomFormation}}</td>
+            <td><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+            <td>{{session.dateDebut|date('d/m/Y')}}</td>
+            <td>{{session.dateFin |date('d/m/Y')}}</td>
+            <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}  
+    </tbody>
+</table>
+
+        
+
+<h2>Sessions à venir : </h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Formation</th>
+            <th>Nom de la session </th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Inscrits</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessions %}
+        {% if session.dateFin|date('d/m/Y') > 'now'|date('d/m/Y') and session.dateDebut|date('d/m/Y') > 'now'|date('d/m/Y') %}
+        <tr>
+            <td>{{session.formation.nomFormation}}</td>
+            <td><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+            <td>{{session.dateDebut|date('d/m/Y')}}</td>
+            <td>{{session.dateFin |date('d/m/Y')}}</td>
+            <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}  
+    </tbody>
+</table>
+
+
+<h2>Sessions passées: </h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Formation</th>
+            <th>Nom de la session </th>
+            
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Inscrits</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessions %}
+        {% if session.dateFin|date('d/m/Y') < 'now'|date('d/m/Y') %}
+        <tr>
+            <td>{{session.formation.nomFormation}}</td>
+            <td><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+            <td>{{session.dateDebut|date('d/m/Y')}}</td>
+            <td>{{session.dateFin |date('d/m/Y')}}</td>
+            <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}  
+    </tbody>
+</table>
+
 {% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SessionController!{% endblock %}
+
+{% block body %}
+
+<h1> Détail de la session </h1>
+
+<p> Formateur référent : {{session.formateur.nom}} {{session.formateur.prenom}}</p>
+<p> Date de début : {{session.dateDebut|date('d/m/Y')}}</p>
+<p> Date de fin : {{session.dateFin|date('d/m/Y')}} </p>
+<p> Nombre de places : {{session.nbPlace}}</p>
+<p> Nombre de places disponibles : {{session.nbPlace - session.stagiaires|length}}</p>
+<p> Nombre de modules : {{session.programmes|length}} ( {% for programme in session.programmes %} {{programme.modules.nomModule}} {% endfor %})</p>
+
+<h2> Stagiaires inscrits </h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Stagiaires</th>
+            <th>Desinscrire</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stagiaire in session.stagiaires %}
+        <tr>
+            <td><a href="{{path ('detail_stagiaire', {id : stagiaire.id })}}">{{stagiaire.prenom}} {{stagiaire.nom}}</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2> Stagiaires non inscrits </h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Stagiaires</th>
+            <th>Inscrire</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stagiaire in stagiaires %}
+        {% if stagiaire not in session.stagiaires %}
+        <tr>
+            <td><a href="{{path ('detail_stagiaire', {id : stagiaire.id })}}">{{stagiaire.prenom}} {{stagiaire.nom}}</a></td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        
+    </tbody>
+</table>
+
+<h2> Programme </h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Module</th>
+            <th>Categorie</th>
+            <th>Durée</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for programme in session.programmes %}
+        <tr>
+            <td>{{programme.modules.nomModule}}</td>
+            <td>{{programme.modules.categorie.nomCategorie}}</td>
+            <td>{{programme.duree}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2> Modules non programmés </h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Stagiaires</th>
+            <th>Inscrire</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for module in modules %}
+        {% if module.id not in session.programme.module %}
+        <tr>
+            <td>{{module.nomModule}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        
+    </tbody>
+</table>
+
+{% endblock %}

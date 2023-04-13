@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Session;
 use App\Entity\Stagiaire;
 use App\Form\StagiaireType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -68,10 +69,10 @@ class StagiaireController extends AbstractController
 
     // Afficher les details d'un stagiaire
     #[Route('/stagiaire/{id}', name: 'detail_stagiaire')]
-    public function detail(Stagiaire $stagiaire): Response
+    public function detail(ManagerRegistry $doctrine, Stagiaire $stagiaire): Response
     {   
         return $this->render('stagiaire/detail.html.twig', [
-            'stagiaire' => $stagiaire
+            'stagiaire' => $stagiaire,
         ]);
     }
 

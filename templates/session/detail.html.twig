@@ -74,7 +74,6 @@
             <td>{{programme.modules.categorie.nomCategorie}}</td>
             <td>{{programme.duree}}</td>
             <td><a href="{{path ('remove_module', {id : programme.id, idsession : session.id })}}">Déprogrammer</a></td>
-            {{dump(programme)}}
         </tr>
         {% endfor %}
         <tr>
@@ -109,7 +108,7 @@
             <td> {{module.nomModule}} </td>
             <td> {{module.categorie.nomCategorie}} </td>
             <td><a href=""></a></td>
-            <td><a href="">Programmer</a></td>
+            <td><a href="{{path ('add_module', {id : module.id, idsession : session.id })}}">Programmer ( A FAIRE )</a></td>
         </tr>
             
         {% endif %}

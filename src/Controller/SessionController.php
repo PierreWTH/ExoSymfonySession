@@ -76,11 +76,29 @@ class SessionController extends AbstractController
 
     //Ajouter un module a la session
     #[Route('/session/{idsession}/{id}/addModule', name: 'add_module')]
-    public function addModule(ManagerRegistry $doctrine, Programme $programme, $idsession): Response
+    public function addModule(ManagerRegistry $doctrine, Modules $module, $idsession, $id): Response
     {  
        $entityManager = $doctrine->getManager();
+
+       //Récupération de la session correspondant a l'id
        $session = $entityManager->getRepository(Session::class)->findOneBy(['id' => $idsession]);
+
+       //Récupération du module correspondant a l'id
+       $module = $entityManager->getRepository(Modules::class)->findOneBy(['id' => $id]);
+
+       // Création du nouvel objet programme
+       $programme = new Programme();
+
+       //Définitions des champs grâce aux setters
+       $programme->setModules($module);
+       $programme->setDuree(12);
+       $programme->setSessions($session);
+
+       // Ajout du programme
        $session->addProgramme($programme);
+
+       // Préparation et ajout dans la BDD
+       $entityManager->persist($programme);
        $entityManager->flush();
        
        return $this->redirectToRoute('detail_session',['id' => $idsession]);

@@ -16,7 +16,7 @@ class Programme
     #[ORM\ManyToOne(inversedBy: 'Programmes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Modules $modules = null;
-
+    
     #[ORM\ManyToOne(inversedBy: 'Programmes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Session $sessions = null;

@@ -28,11 +28,11 @@ class Session
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateFin = null;
 
-    #[ORM\OneToMany(mappedBy: 'sessions', targetEntity: Programme::class)]
+    #[ORM\OneToMany(mappedBy: 'sessions', targetEntity: Programme::class, orphanRemoval:true)]
+    #[ORM\JoinColumn(nullable: false)]
     private Collection $programmes;
 
     #[ORM\ManyToOne(inversedBy: 'Sessions')]
-    #[ORM\JoinColumn(nullable: false)]
     private ?Formation $formation = null;
 
     #[ORM\ManyToOne(inversedBy: 'Sessions')]

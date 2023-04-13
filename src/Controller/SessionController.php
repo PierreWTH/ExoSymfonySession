@@ -38,5 +38,29 @@ class SessionController extends AbstractController
     }
 
 
+     //Désinscrire un stagiaire d'une session
+     #[Route('/session/{idsession}/{id}/unsubscribe', name: 'unsubscribe_stagiaire')]
+     public function unsubscribe(ManagerRegistry $doctrine, Stagiaire $stagiaire, $idsession): Response
+     {  
+        $entityManager = $doctrine->getManager();
+        $session = $entityManager->getRepository(Session::class)->find($idsession);
+        $session->removeStagiaire($stagiaire);
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('detail_session',['id' => $idsession]);
+     }
+
+     //Inscrire un stagiaire a une session
+     #[Route('/session/{idsession}/{id}/subscribe', name: 'subscribe_stagiaire')]
+     public function subscribe(ManagerRegistry $doctrine, Stagiaire $stagiaire, $idsession): Response
+     {  
+        $entityManager = $doctrine->getManager();
+        $session = $entityManager->getRepository(Session::class)->find($idsession);
+        $session->addStagiaire($stagiaire);
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('detail_session',['id' => $idsession]);
+     }
+
     
 }

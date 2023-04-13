@@ -27,6 +27,7 @@
             <td><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
             <td>{{session.dateDebut|date('d/m/Y')}}</td>
             <td>{{session.dateFin |date('d/m/Y')}}</td>
+            {# {{ dump(session.stagiaires)}} #}
             <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
         </tr>
         {% endif %}

@@ -13,13 +13,13 @@ class Programme
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'programmes')]
+    #[ORM\ManyToOne(inversedBy: 'Programmes')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?modules $modules = null;
+    private ?Modules $modules = null;
 
-    #[ORM\ManyToOne(inversedBy: 'programmes')]
+    #[ORM\ManyToOne(inversedBy: 'Programmes')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?session $sessions = null;
+    private ?Session $sessions = null;
 
     #[ORM\Column]
     private ?int $duree = null;

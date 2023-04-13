@@ -21,9 +21,9 @@ class Modules
     #[ORM\OneToMany(mappedBy: 'modules', targetEntity: Programme::class)]
     private Collection $programmes;
 
-    #[ORM\ManyToOne(inversedBy: 'modules')]
+    #[ORM\ManyToOne(inversedBy: 'Modules')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?categorie $categorie = null;
+    private ?Categorie $categorie = null;
 
     public function __construct()
     {

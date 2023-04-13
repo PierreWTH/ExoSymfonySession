@@ -31,11 +31,11 @@ class Session
     #[ORM\OneToMany(mappedBy: 'sessions', targetEntity: Programme::class)]
     private Collection $programmes;
 
-    #[ORM\ManyToOne(inversedBy: 'sessions')]
+    #[ORM\ManyToOne(inversedBy: 'Sessions')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Formation $formation = null;
 
-    #[ORM\ManyToOne(inversedBy: 'sessions')]
+    #[ORM\ManyToOne(inversedBy: 'Sessions')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Formateur $formateur = null;
 

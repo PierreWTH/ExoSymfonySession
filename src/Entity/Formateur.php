@@ -31,7 +31,7 @@ class Formateur
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $adresse = null;
 
-    #[ORM\OneToMany(mappedBy: 'formateur', targetEntity: session::class)]
+    #[ORM\OneToMany(mappedBy: 'formateur', targetEntity: Session::class)]
     private Collection $sessions;
 
     public function __construct()

@@ -18,7 +18,7 @@ class Formation
     #[ORM\Column(length: 50)]
     private ?string $nomFormation = null;
 
-    #[ORM\OneToMany(mappedBy: 'formation', targetEntity: session::class)]
+    #[ORM\OneToMany(mappedBy: 'formation', targetEntity: Session::class)]
     private Collection $sessions;
 
     public function __construct()

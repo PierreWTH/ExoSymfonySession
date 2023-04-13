@@ -31,7 +31,7 @@ class Stagiaire
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $adresse = null;
 
-    #[ORM\ManyToMany(targetEntity: session::class, inversedBy: 'stagiaires')]
+    #[ORM\ManyToMany(targetEntity: Session::class, inversedBy: 'stagiaires')]
     private Collection $sessions;
 
     public function __construct()

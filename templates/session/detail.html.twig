@@ -64,6 +64,7 @@
             <th>Module</th>
             <th>Categorie</th>
             <th>Durée</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -72,8 +73,21 @@
             <td>{{programme.modules.nomModule}}</td>
             <td>{{programme.modules.categorie.nomCategorie}}</td>
             <td>{{programme.duree}}</td>
+            <td><a href="{{path ('remove_module', {id : programme.id, idsession : session.id })}}">Déprogrammer</a></td>
+            {{dump(programme)}}
         </tr>
         {% endfor %}
+        <tr>
+            <th>Total de jours : 
+            {% set totalJour = 0 %}
+            {% for module in modulesBySession %}
+                                {% set totalJour = totalJour + module.duree%}
+                                
+                                {% endfor %}  
+                                {{ totalJour }} 
+                                
+            </th>
+        </tr>
     </tbody>
 </table>
 
@@ -85,6 +99,7 @@
             <th>Module</th>
             <th>Categorie</th>
             <th>Durée</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -93,6 +108,8 @@
         <tr>
             <td> {{module.nomModule}} </td>
             <td> {{module.categorie.nomCategorie}} </td>
+            <td><a href=""></a></td>
+            <td><a href="">Programmer</a></td>
         </tr>
             
         {% endif %}

@@ -62,5 +62,15 @@ class SessionController extends AbstractController
         return $this->redirectToRoute('detail_session',['id' => $idsession]);
      }
 
-    
+    //Enlever un module d'une session
+    #[Route('/session/{idsession}/{id}/removeModule', name: 'remove_module')]
+    public function removeModule(ManagerRegistry $doctrine, Programme $programme, $idsession): Response
+    {  
+       $entityManager = $doctrine->getManager();
+       $session = $entityManager->getRepository(Session::class)->findOneBy(['id' => $idsession]);
+       $session->removeProgramme($programme);
+       $entityManager->flush();
+       
+       return $this->redirectToRoute('detail_session',['id' => $idsession]);
+    }
 }

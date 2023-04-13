@@ -14,6 +14,12 @@
 
 <h2> Sessions du stagiaire </h2>
 
-
+{% for session in sessions %}
+    {% if stagiaire in session.stagiaires %}
+    
+    {{session.nomSession}}<br>
+    {% endif %}
+    
+{% endfor %}
 
 {% endblock %}

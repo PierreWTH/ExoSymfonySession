@@ -71,8 +71,11 @@ class StagiaireController extends AbstractController
     #[Route('/stagiaire/{id}', name: 'detail_stagiaire')]
     public function detail(ManagerRegistry $doctrine, Stagiaire $stagiaire): Response
     {   
+        $entityManager = $doctrine->getManager();
+        $sessions = $entityManager->getRepository(Session::class)->findAll();
         return $this->render('stagiaire/detail.html.twig', [
             'stagiaire' => $stagiaire,
+            'sessions' => $sessions
         ]);
     }
 

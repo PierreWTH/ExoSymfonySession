@@ -15,7 +15,6 @@ class HomeController extends AbstractController
     {
         $sessions = $doctrine->getRepository(Session::Class)->findBy([], ["dateDebut"=>"ASC"]);
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'SessionControlleur',
             'sessions' => $sessions
 
         ]);

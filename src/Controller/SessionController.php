@@ -7,21 +7,67 @@ use App\Entity\Session;
 use App\Entity\Programme;
 use App\Entity\Stagiaire;
 
-use Doctrine\Persistence\ManagerRegistry;
+use App\Form\SessionType;
 
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SessionController extends AbstractController
 {
+    // Liste des sessions
+
     #[Route('/session', name: 'app_session')]
-    public function index(): Response
+    public function index(ManagerRegistry $doctrine): Response
     {
+        $sessions = $doctrine->getRepository(Session::Class)->findBy([], ["dateDebut"=>"ASC"]);
         return $this->render('session/index.html.twig', [
-            'controller_name' => 'SessionController',
+            'sessions' => $sessions
+
         ]);
     }
+
+     // Ajouter ou editer une session
+     #[Route('/session/add', name: 'add_session')]
+     #[Route('/session/{id}/edit', name: 'edit_session')]
+ 
+     public function add(ManagerRegistry $doctrine, Session $session = null, Request $request) : Response
+     {
+ 
+         if(!$session){
+             $session = new Session();
+         }
+ 
+         // Creation du formulaire et objet qu'on lui fait passer
+         $form = $this->createForm(SessionType::class, $session);
+ 
+         //Récuperation des données du formulaire
+         $form->handleRequest($request);
+ 
+         // Vérification si le form est soumis et si les données sont saines
+         if($form->isSubmitted() && $form->isValid())
+         {   
+             // On hydrate l'objet Session qu'on a crée avec les données du formulaire
+             $session = $form->getData();
+             // On récupère l'entity Manager pour avoir acces a persist et flush
+             $entityManager = $doctrine->getManager();
+             // On prépare l'objet
+             $entityManager->persist($session);
+             // On l'execute
+             $entityManager->flush();
+ 
+             return $this->redirectToRoute('app_session');
+         }
+ 
+         // Vue qui vas afficher le formulaire
+         return $this->render('session/add.html.twig', [
+             //generer le formulaire visuellement quand on utilise formAddSession
+             'formAddSession' => $form->createView()
+             
+         ]);
+     }
 
     // Afficher les details d'une session
     #[Route('/session/{id}', name: 'detail_session')]
@@ -83,8 +129,10 @@ class SessionController extends AbstractController
        $entityManager = $doctrine->getManager();
 
        if (isset($_POST['submit']))
-        { 
+        {   
             $duree = filter_input(INPUT_POST, "duree", FILTER_VALIDATE_INT);
+
+            if($duree){
 
        //Récupération de la session correspondant a l'id
        $session = $entityManager->getRepository(Session::class)->findOneBy(['id' => $idsession]);
@@ -106,9 +154,21 @@ class SessionController extends AbstractController
        // Préparation et ajout dans la BDD
        $entityManager->persist($programme);
        $entityManager->flush();
-
-        }
+    }
+    }
        
        return $this->redirectToRoute('detail_session',['id' => $idsession]);
     }
+
+    // Supprimer une session
+    #[Route('/session/{id}/delete', name: 'delete_session')]
+    public function delete(ManagerRegistry $doctrine, Session $session): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($session);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_session');
+    }
+   
 }

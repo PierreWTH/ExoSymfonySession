@@ -1,8 +1,108 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SessionController!{% endblock %}
+{% block title %} Sessions {% endblock %}
 
 {% block body %}
 
 <h1> Liste des sessions </h1>
+
+<a href="{{path ('add_session')}}">Ajouter une session </a> 
+
+<h2>Sessions en cours : </h2>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Formation</th>
+            <th>Nom de la session </th>
+            
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Inscrits</th>
+            <th>Actions</th>
+            <th> Statut </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessions %}
+        {% if session.dateDebut|date('d/m/Y') <= 'now'|date('d/m/Y') and session.dateFin|date('d/m/Y') >= 'now'|date('d/m/Y')%}
+        <tr>
+            <td>{{session.formation.nomFormation}}</td>
+            <td><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+            <td>{{session.dateDebut|date('d/m/Y')}}</td>
+            <td>{{session.dateFin |date('d/m/Y')}}</td>
+            <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+            <td><a href="{{path ('edit_session', {id : session.id })}}">Editer</a> <a href="{{path ('delete_session', {id : session.id })}}">Supprimer</a></td>
+            {% if session.stagiaires|length == session.nbPlace %}
+            <td> Session complète </td>
+        </tr>
+         {% endif %}
+        {% endif %}
+        {% endfor %}  
+    </tbody>
+</table>
+
+        
+
+<h2>Sessions à venir : </h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Formation</th>
+            <th>Nom de la session </th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Inscrits</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessions %}
+        {% if session.dateFin|date('d/m/Y') > 'now'|date('d/m/Y') and session.dateDebut|date('d/m/Y') > 'now'|date('d/m/Y') %}
+        <tr>
+            <td>{{session.formation.nomFormation}}</td>
+            <td><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+            <td>{{session.dateDebut|date('d/m/Y')}}</td>
+            <td>{{session.dateFin |date('d/m/Y')}}</td>
+            <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+            <td><a href="{{path ('edit_session', {id : session.id })}}">Editer</a> <a href="{{path ('delete_session', {id : session.id })}}">Supprimer</a></td>
+        </tr>
+        {% endif %}
+        {% endfor %}  
+    </tbody>
+</table>
+
+
+<h2>Sessions passées: </h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Formation</th>
+            <th>Nom de la session </th>
+            
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Inscrits</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessions %}
+        {% if session.dateFin|date('d/m/Y') < 'now'|date('d/m/Y') %}
+        <tr>
+            <td>{{session.formation.nomFormation}}</td>
+            <td><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+            <td>{{session.dateDebut|date('d/m/Y')}}</td>
+            <td>{{session.dateFin |date('d/m/Y')}}</td>
+            <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+            <td><a href="{{path ('edit_session', {id : session.id })}}">Editer</a> <a href="{{path ('delete_session', {id : session.id })}}">Supprimer</a></td>
+        </tr>
+        {% endif %}
+        {% endfor %}  
+    </tbody>
+</table>
+
 {% endblock %}

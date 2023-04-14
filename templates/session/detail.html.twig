@@ -110,8 +110,6 @@
         {% for module in modules %}
         {% if module.id not in modulesBySession|map(item => item.modules.id)%}
         <form action="{{path ('add_module', {id : module.id, idsession : session.id })}}" method="post">
-        
-        <tr>
         <tr>
             <td> {{module.nomModule}} </td>
             <td> {{module.categorie.nomCategorie}} </td>

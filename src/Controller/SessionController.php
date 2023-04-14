@@ -6,7 +6,9 @@ use App\Entity\Modules;
 use App\Entity\Session;
 use App\Entity\Programme;
 use App\Entity\Stagiaire;
+
 use Doctrine\Persistence\ManagerRegistry;
+
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,7 +25,7 @@ class SessionController extends AbstractController
 
     // Afficher les details d'une session
     #[Route('/session/{id}', name: 'detail_session')]
-    public function detail(Session $session, ManagerRegistry $doctrine, $id): Response
+    public function detail(Session $session, ManagerRegistry $doctrine, $id ): Response
     {   
         $stagiaires = $doctrine->getRepository(Stagiaire::Class)->findBy([], ["nom"=>"ASC"]);
         $modules = $doctrine->getRepository(Modules::Class)->findBy([], ["nomModule"=>"ASC"]);
@@ -33,7 +35,7 @@ class SessionController extends AbstractController
             'session' => $session,
             'stagiaires' => $stagiaires,
             'modules'=>$modules,
-            'modulesBySession'=>$modulesBySession
+            'modulesBySession'=>$modulesBySession,
         ]);
     }
 
@@ -80,6 +82,10 @@ class SessionController extends AbstractController
     {  
        $entityManager = $doctrine->getManager();
 
+       if (isset($_POST['submit']))
+        { 
+            $duree = filter_input(INPUT_POST, "duree", FILTER_VALIDATE_INT);
+
        //Récupération de la session correspondant a l'id
        $session = $entityManager->getRepository(Session::class)->findOneBy(['id' => $idsession]);
 
@@ -91,7 +97,7 @@ class SessionController extends AbstractController
 
        //Définitions des champs grâce aux setters
        $programme->setModules($module);
-       $programme->setDuree(12);
+       $programme->setDuree($duree);
        $programme->setSessions($session);
 
        // Ajout du programme
@@ -100,6 +106,8 @@ class SessionController extends AbstractController
        // Préparation et ajout dans la BDD
        $entityManager->persist($programme);
        $entityManager->flush();
+
+        }
        
        return $this->redirectToRoute('detail_session',['id' => $idsession]);
     }

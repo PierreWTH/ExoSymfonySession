@@ -11,4 +11,14 @@
 <p> Date de naissance : {{formateur.dateNaissance |date('d/m/Y')}} </p>
 <p> Telephone : {{formateur.telephone}} </p>
 <p> Adresse : {{formateur.adresse}} </p>
+
+<h2> Sessions du Formateur </h2>
+
+{% for session in sessions %}
+{% if formateur.id == session.formateur.id %}
+
+{{session.nomSession}} <br>
+
+{% endif %}
+{% endfor %}
 {% endblock %}

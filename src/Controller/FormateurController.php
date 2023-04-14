@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Session;
 use App\Entity\Formateur;
 use App\Form\FormateurType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -63,12 +64,16 @@ class FormateurController extends AbstractController
 
     // Afficher les details d'un formateur
     #[Route('/formateur/{id}', name: 'detail_formateur')]
-    public function detail(Formateur $formateur): Response
-    {
+    public function detail(ManagerRegistry $doctrine, Formateur $formateur): Response
+    {   
+        $entityManager = $doctrine->getManager();
+        $sessions = $entityManager->getRepository(Session::class)->findAll();
         return $this->render('formateur/detail.html.twig', [
-            'formateur' => $formateur
+            'formateur' => $formateur,
+            'sessions' => $sessions
         ]);
     }
+
 
     // Supprimer un formateur
     #[Route('/formateur/{id}/delete', name: 'delete_formateur')]

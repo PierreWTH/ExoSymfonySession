@@ -4,6 +4,12 @@
 
 {% block body %}
 
+{% if not app.user %}
+
+<p> Connectez vous pour accéder au contenu. </p>
+
+{% else %}
+
 <h1> Bienvenue sur votre tableau de bord, {{ app.user.prenom}} {{app.user.nom }}</h1>
 
 <h2>Sessions en cours : </h2>
@@ -95,5 +101,5 @@
         {% endfor %}  
     </tbody>
 </table>
-
+{% endif %}
 {% endblock %}

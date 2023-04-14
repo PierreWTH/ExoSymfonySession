@@ -6,6 +6,7 @@
  
 <h1> Liste des formations </h1>
 
+<a href="{{path ('add_formation')}}">Ajouter une formation</a> 
 
 <table>
     <thead>
@@ -17,6 +18,7 @@
         {% for formation in formations %}
         <tr>
             <td>{{formation.nomFormation}}</td>
+            <td><a href="{{path ('edit_formation', {id : formation.id })}}">Editer</a> <a href="{{path ('delete_formation', {id : formation.id })}}">Supprimer</a></td>
         </tr>
         {% endfor %}
     </tbody>

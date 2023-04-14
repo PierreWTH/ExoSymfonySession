@@ -6,6 +6,8 @@
 
 <h1>Liste des catégories</h1>
 
+<a href="{{path ('add_categorie')}}">Ajouter une catégorie</a> 
+
 <table>
     <thead>
         <tr>
@@ -16,6 +18,7 @@
         {% for categorie in categories %}
         <tr>
             <td>{{categorie.nomCategorie}}</td>
+            <td><a href="{{path ('edit_categorie', {id : categorie.id })}}">Editer</a> <a href="{{path ('delete_categorie', {id : categorie.id })}}">Supprimer</a></td>
         </tr>
         {% endfor %}
     </tbody>

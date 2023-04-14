@@ -17,6 +17,7 @@
             <th>Date de début</th>
             <th>Date de fin</th>
             <th>Inscrits</th>
+            <th> Statut </th>
         </tr>
     </thead>
     <tbody>
@@ -27,9 +28,11 @@
             <td><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
             <td>{{session.dateDebut|date('d/m/Y')}}</td>
             <td>{{session.dateFin |date('d/m/Y')}}</td>
-            {# {{ dump(session.stagiaires)}} #}
             <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+            {% if session.stagiaires|length == session.nbPlace %}
+            <td> Session complète </td>
         </tr>
+         {% endif %}
         {% endif %}
         {% endfor %}  
     </tbody>

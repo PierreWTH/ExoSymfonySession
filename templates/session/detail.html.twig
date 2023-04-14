@@ -48,8 +48,12 @@
         {% if stagiaire not in session.stagiaires %}
         <tr>
             <td><a href="{{path ('detail_stagiaire', {id : stagiaire.id })}}">{{stagiaire.prenom}} {{stagiaire.nom}}</a></td>
+            {% if session.nbPlace > session.stagiaires|length%}
             <td><a href="{{path ('subscribe_stagiaire', {id : stagiaire.id, idsession : session.id })}}">Inscrire</a></td>
+            {% else %}
+                <td> Complet </td>
         </tr>
+        {% endif %}
         {% endif %}
         {% endfor %}
         
@@ -76,14 +80,14 @@
             <td><a href="{{path ('remove_module', {id : programme.id, idsession : session.id })}}">Déprogrammer</a></td>
         </tr>
         {% endfor %}
-        <tr>
-            <th>Total de jours : 
+        
+            <th>Durée totale : 
             {% set totalJour = 0 %}
             {% for module in modulesBySession %}
                                 {% set totalJour = totalJour + module.duree%}
                                 
                                 {% endfor %}  
-                                {{ totalJour }} 
+                                {{ totalJour }} jours 
                                 
             </th>
         </tr>

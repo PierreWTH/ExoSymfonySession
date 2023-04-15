@@ -74,17 +74,14 @@ class SessionController extends AbstractController
     #[Route('/session/{id}', name: 'detail_session')]
     public function detail(Session $session, SessionRepository $sr, ManagerRegistry $doctrine, $id ): Response
     {   
-        $stagiaires = $doctrine->getRepository(Stagiaire::Class)->findBy([], ["nom"=>"ASC"]);
+
         $nonInscrits = $sr->findNonInscrits($id);
-        $modules = $doctrine->getRepository(Modules::Class)->findBy([], ["nomModule"=>"ASC"]);
-        $modulesBySession = $doctrine->getRepository(Programme::Class)->findBy(["sessions"=> $id], []);
+        $nonProgrammes = $sr->findNonProgrammes($id);
 
         return $this->render('session/detail.html.twig', [
             'session' => $session,
-            'stagiaires' => $stagiaires,
-            'modules'=>$modules,
-            'modulesBySession'=>$modulesBySession,
-            'nonInscrits' => $nonInscrits
+            'nonInscrits' => $nonInscrits,
+            'nonProgrammes' => $nonProgrammes
         ]);
     }
 

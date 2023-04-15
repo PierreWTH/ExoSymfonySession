@@ -6,7 +6,7 @@
 
 
 
-<h1> Détail de la session </h1>
+<h1>{{session.nomSession}}</h1>
 
 <p> Formateur référent : {{session.formateur.nom}} {{session.formateur.prenom}}</p>
 <p> Date de début : {{session.dateDebut|date('d/m/Y')}}</p>
@@ -81,8 +81,8 @@
         
             <th>Durée totale : 
             {% set totalJour = 0 %}
-            {% for module in modulesBySession %}
-                                {% set totalJour = totalJour + module.duree%}
+            {% for module in session.programmes %}
+                                {% set totalJour = totalJour + module.duree %}
                                 
                                 {% endfor %}  
                                 {{ totalJour }} jours 
@@ -105,8 +105,8 @@
     </thead>
     <tbody>
     
-        {% for module in modules %}
-        {% if module.id not in modulesBySession|map(item => item.modules.id)%}
+        {% for module in nonProgrammes %}
+        
         <form action="{{path ('add_module', {id : module.id, idsession : session.id })}}" method="post">
         <tr>
             <td> {{module.nomModule}} </td>
@@ -115,7 +115,6 @@
             <td><input type="submit" name="submit" value="Programmer"/></td>
         </tr>
         </form>
-        {% endif %}
         {% endfor %}
         
         

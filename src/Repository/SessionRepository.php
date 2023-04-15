@@ -67,6 +67,33 @@ class SessionRepository extends ServiceEntityRepository
 
     }
 
+    public function findNonProgrammes($sessionId){
+
+        $em = $this->getEntityManager();
+        $sub = $em->CreateQueryBuilder();
+    
+        $qb = $sub;
+        
+        // Selectionner tous les modules d'un programme d'une session dont l'id est passé en paramètre
+        $qb-> select('m')
+            ->from('App\Entity\Modules', 'm')
+            ->leftJoin('m.programmes', 'pr')
+            ->where('pr.sessions = :id');
+    
+        $sub = $em ->createQueryBuilder();
+    
+        // Selectionner tous les modules qui ne sont pas dans le résultat précédent
+        $sub-> select('mo')
+            ->from('App\Entity\Modules', 'mo')
+            ->where($sub->expr()->notIn('mo.id', $qb->getDQL()))
+            ->setParameter('id', $sessionId)
+            ->orderBy('mo.nomModule');
+    
+        $query = $sub->getQuery();
+        return $query->getResult();
+    
+        }
+
 
 
 //    /**

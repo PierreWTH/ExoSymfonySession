@@ -5,8 +5,9 @@
 {% block body %}
  
 <h1> Liste des formations </h1>
-
+{% if is_granted('ROLE_ADMIN') %}
 <a href="{{path ('add_formation')}}">Ajouter une formation</a> 
+{% endif %}
 
 <table>
     <thead>
@@ -18,7 +19,9 @@
         {% for formation in formations %}
         <tr>
             <td>{{formation.nomFormation}}</td>
+            {% if is_granted('ROLE_ADMIN') %}
             <td><a href="{{path ('edit_formation', {id : formation.id })}}">Editer</a> <a href="{{path ('delete_formation', {id : formation.id })}}">Supprimer</a></td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>

@@ -28,8 +28,8 @@ class StagiaireController extends AbstractController
     }
 
     // Ajouter ou editer un stagiaire
-    #[Route('/stagiaire/add', name: 'add_stagiaire')]
-    #[Route('/stagiaire/{id}/edit', name: 'edit_stagiaire')]
+    #[Route('admin/stagiaire/add', name: 'add_stagiaire')]
+    #[Route('admin/stagiaire/{id}/edit', name: 'edit_stagiaire')]
 
     public function add(ManagerRegistry $doctrine, Stagiaire $stagiaire = null, Request $request) : response
     {
@@ -80,7 +80,7 @@ class StagiaireController extends AbstractController
     }
 
     // Supprimer un stagiaire
-    #[Route('/stagiaire/{id}/delete', name: 'delete_stagiaire')]
+    #[Route('admin/stagiaire/{id}/delete', name: 'delete_stagiaire')]
     public function delete(ManagerRegistry $doctrine, Stagiaire $stagiaire): Response
     {
         $entityManager = $doctrine->getManager();

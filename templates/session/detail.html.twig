@@ -21,14 +21,18 @@
     <thead>
         <tr>
             <th>Stagiaires</th>
+            {% if is_granted('ROLE_ADMIN') %}
             <th>Desinscrire</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
         {% for stagiaire in session.stagiaires %}
         <tr>
             <td><a href="{{path ('detail_stagiaire', {id : stagiaire.id })}}">{{stagiaire.prenom}} {{stagiaire.nom}}</a></td>
+            {% if is_granted('ROLE_ADMIN') %}
             <td><a href="{{path ('unsubscribe_stagiaire', {id : stagiaire.id, idsession : session.id })}}">Desinscrire</a></td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>
@@ -40,7 +44,9 @@
     <thead>
         <tr>
             <th>Stagiaires</th>
+            {% if is_granted('ROLE_ADMIN') %}
             <th>Inscrire</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
@@ -48,7 +54,9 @@
         <tr>
             <td><a href="{{path ('detail_stagiaire', {id : stagiaire.id })}}">{{stagiaire.prenom}} {{stagiaire.nom}}</a></td>
             {% if session.nbPlace > session.stagiaires|length%}
+            {% if is_granted('ROLE_ADMIN') %}
             <td><a href="{{path ('subscribe_stagiaire', {id : stagiaire.id, idsession : session.id })}}">Inscrire</a></td>
+            {% endif %}
             {% else %}
                 <td> Complet </td>
         </tr>
@@ -66,7 +74,9 @@
             <th>Module</th>
             <th>Categorie</th>
             <th>Durée</th>
+            {% if is_granted('ROLE_ADMIN') %}
             <th>Action</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
@@ -75,7 +85,9 @@
             <td>{{programme.modules.nomModule}}</td>
             <td>{{programme.modules.categorie.nomCategorie}}</td>
             <td>{{programme.duree}}</td>
+            {% if is_granted('ROLE_ADMIN') %}
             <td><a href="{{path ('remove_module', {id : programme.id, idsession : session.id })}}">Déprogrammer</a></td>
+            {% endif %}
         </tr>
         {% endfor %}
         
@@ -99,8 +111,10 @@
         <tr>
             <th>Module</th>
             <th>Categorie</th>
+            {% if is_granted('ROLE_ADMIN') %}
             <th>Durée</th>
             <th>Action</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
@@ -111,8 +125,10 @@
         <tr>
             <td> {{module.nomModule}} </td>
             <td> {{module.categorie.nomCategorie}} </td>
+            {% if is_granted('ROLE_ADMIN') %}
             <td><input name = 'duree' id="{{module.id}}" type="number" value="0" min="0"/></td>
             <td><input type="submit" name="submit" value="Programmer"/></td>
+            {% endif %}
         </tr>
         </form>
         {% endfor %}

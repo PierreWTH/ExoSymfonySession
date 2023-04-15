@@ -31,8 +31,8 @@ class SessionController extends AbstractController
     }
 
      // Ajouter ou editer une session
-     #[Route('/session/add', name: 'add_session')]
-     #[Route('/session/{id}/edit', name: 'edit_session')]
+     #[Route('admin/session/add', name: 'add_session')]
+     #[Route('admin/session/{id}/edit', name: 'edit_session')]
  
      public function add(ManagerRegistry $doctrine, Session $session = null, Request $request) : Response
      {
@@ -71,7 +71,7 @@ class SessionController extends AbstractController
      }
 
     // Afficher les details d'une session
-    #[Route('/session/{id}', name: 'detail_session')]
+    #[Route('admin/session/{id}', name: 'detail_session')]
     public function detail(Session $session, SessionRepository $sr, ManagerRegistry $doctrine, $id ): Response
     {   
 
@@ -87,7 +87,7 @@ class SessionController extends AbstractController
 
 
      //Désinscrire un stagiaire d'une session
-     #[Route('/session/{idsession}/{id}/unsubscribe', name: 'unsubscribe_stagiaire')]
+     #[Route('admin/session/{idsession}/{id}/unsubscribe', name: 'unsubscribe_stagiaire')]
      public function unsubscribe(ManagerRegistry $doctrine, Stagiaire $stagiaire, $idsession): Response
      {  
         $entityManager = $doctrine->getManager();
@@ -99,7 +99,7 @@ class SessionController extends AbstractController
      }
 
      //Inscrire un stagiaire a une session
-     #[Route('/session/{idsession}/{id}/subscribe', name: 'subscribe_stagiaire')]
+     #[Route('admin/session/{idsession}/{id}/subscribe', name: 'subscribe_stagiaire')]
      public function subscribe(ManagerRegistry $doctrine, Stagiaire $stagiaire, $idsession): Response
      {  
         $entityManager = $doctrine->getManager();
@@ -111,7 +111,7 @@ class SessionController extends AbstractController
      }
 
     //Enlever un module d'une session
-    #[Route('/session/{idsession}/{id}/removeModule', name: 'remove_module')]
+    #[Route('admin/session/{idsession}/{id}/removeModule', name: 'remove_module')]
     public function removeModule(ManagerRegistry $doctrine, Programme $programme, $idsession): Response
     {  
        $entityManager = $doctrine->getManager();
@@ -123,7 +123,7 @@ class SessionController extends AbstractController
     }
 
     //Ajouter un module a la session
-    #[Route('/session/{idsession}/{id}/addModule', name: 'add_module')]
+    #[Route('admin/session/{idsession}/{id}/addModule', name: 'add_module')]
     public function addModule(ManagerRegistry $doctrine, Modules $module, $idsession, $id): Response
     {  
        $entityManager = $doctrine->getManager();
@@ -161,7 +161,7 @@ class SessionController extends AbstractController
     }
 
     // Supprimer une session
-    #[Route('/session/{id}/delete', name: 'delete_session')]
+    #[Route('admin/session/{id}/delete', name: 'delete_session')]
     public function delete(ManagerRegistry $doctrine, Session $session): Response
     {
         $entityManager = $doctrine->getManager();

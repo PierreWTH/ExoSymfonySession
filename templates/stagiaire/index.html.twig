@@ -5,15 +5,18 @@
 {% block body %}
 
 <h1> Liste des stagiaires </h1>
-
+{% if is_granted('ROLE_ADMIN') %}
 <a href="{{path ('add_stagiaire')}}">Ajouter un stagiaire</a> 
+{% endif %}
 
 <table>
     <thead>
         <tr>
             <th>Nom</th>
             <th>Prenom</th>
+            {% if is_granted('ROLE_ADMIN') %}
             <th>Gerer</th>
+            {% endif %}
             
             
         </tr>
@@ -23,8 +26,9 @@
         <tr>
             <td><a href="{{path ('detail_stagiaire', {id : stagiaire.id })}}">{{stagiaire.prenom}}</a></td>
             <td>{{stagiaire.nom}}</td>
+            {% if is_granted('ROLE_ADMIN') %}
             <td><a href="{{path ('edit_stagiaire', {id : stagiaire.id })}}">Editer</a> <a href="{{path ('delete_stagiaire', {id : stagiaire.id })}}">Supprimer</a></td>
-        
+            {% endif %}
 
         </tr>
         {% endfor %}

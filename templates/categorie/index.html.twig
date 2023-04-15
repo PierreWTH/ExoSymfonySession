@@ -6,7 +6,9 @@
 
 <h1>Liste des catégories</h1>
 
+{% if is_granted('ROLE_ADMIN') %}
 <a href="{{path ('add_categorie')}}">Ajouter une catégorie</a> 
+{% endif %}
 
 <table>
     <thead>
@@ -18,7 +20,9 @@
         {% for categorie in categories %}
         <tr>
             <td>{{categorie.nomCategorie}}</td>
+            {% if is_granted('ROLE_ADMIN') %}
             <td><a href="{{path ('edit_categorie', {id : categorie.id })}}">Editer</a> <a href="{{path ('delete_categorie', {id : categorie.id })}}">Supprimer</a></td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>

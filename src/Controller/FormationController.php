@@ -22,9 +22,9 @@ class FormationController extends AbstractController
         ]);
     }
 
-     // Ajouter ou editer un stagiaire
-     #[Route('/formation/add', name: 'add_formation')]
-     #[Route('/formation/{id}/edit', name: 'edit_formation')]
+     // Ajouter ou editer une formation
+     #[Route('admin/formation/add', name: 'add_formation')]
+     #[Route('admin/formation/{id}/edit', name: 'edit_formation')]
  
      public function add(ManagerRegistry $doctrine, Formation $formation = null, Request $request) : response
      {
@@ -63,7 +63,7 @@ class FormationController extends AbstractController
      }
 
      // Supprimer une formation
-    #[Route('/formation/{id}/delete', name: 'delete_formation')]
+    #[Route('admin/formation/{id}/delete', name: 'delete_formation')]
     public function delete(ManagerRegistry $doctrine, Formation $formation): Response
     {
         $entityManager = $doctrine->getManager();

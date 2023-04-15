@@ -6,7 +6,9 @@
 
 <h1> Liste des sessions </h1>
 
+{% if is_granted('ROLE_ADMIN') %}
 <a href="{{path ('add_session')}}">Ajouter une session </a> 
+{% endif %}
 
 <h2>Sessions en cours : </h2>
 
@@ -20,7 +22,9 @@
             <th>Date de début</th>
             <th>Date de fin</th>
             <th>Inscrits</th>
+            {% if is_granted('ROLE_ADMIN') %}
             <th>Actions</th>
+            {% endif %}
             <th> Statut </th>
         </tr>
     </thead>
@@ -33,7 +37,9 @@
             <td>{{session.dateDebut|date('d/m/Y')}}</td>
             <td>{{session.dateFin |date('d/m/Y')}}</td>
             <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+            {% if is_granted('ROLE_ADMIN') %}
             <td><a href="{{path ('edit_session', {id : session.id })}}">Editer</a> <a href="{{path ('delete_session', {id : session.id })}}">Supprimer</a></td>
+            {% endif %}
             {% if session.stagiaires|length == session.nbPlace %}
             <td> Session complète </td>
         </tr>
@@ -55,7 +61,9 @@
             <th>Date de début</th>
             <th>Date de fin</th>
             <th>Inscrits</th>
+            {% if is_granted('ROLE_ADMIN') %}
             <th>Actions</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
@@ -67,7 +75,9 @@
             <td>{{session.dateDebut|date('d/m/Y')}}</td>
             <td>{{session.dateFin |date('d/m/Y')}}</td>
             <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+            {% if is_granted('ROLE_ADMIN') %}
             <td><a href="{{path ('edit_session', {id : session.id })}}">Editer</a> <a href="{{path ('delete_session', {id : session.id })}}">Supprimer</a></td>
+            {% endif %}
         </tr>
         {% endif %}
         {% endfor %}  
@@ -86,7 +96,9 @@
             <th>Date de début</th>
             <th>Date de fin</th>
             <th>Inscrits</th>
+            {% if is_granted('ROLE_ADMIN') %}
             <th>Actions</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
@@ -98,7 +110,9 @@
             <td>{{session.dateDebut|date('d/m/Y')}}</td>
             <td>{{session.dateFin |date('d/m/Y')}}</td>
             <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+            {% if is_granted('ROLE_ADMIN') %}
             <td><a href="{{path ('edit_session', {id : session.id })}}">Editer</a> <a href="{{path ('delete_session', {id : session.id })}}">Supprimer</a></td>
+            {% endif %}
         </tr>
         {% endif %}
         {% endfor %}  

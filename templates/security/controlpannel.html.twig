@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Panneau de controle {% endblock %}
+
+{% block body %}
+
+<h1> Panneau de controle </h1>
+
+<h2> Formation </h2> 
+
+<a href="{{path ('add_formation')}}"> Ajouter une formation</a>
+
+<h2> Session </h2> 
+
+<a href="{{path ('add_session')}}"> Ajouter une formation</a>
+
+<h2> Stagiaire </h2> 
+
+<a href="{{path ('add_stagiaire')}}"> Ajouter une formation</a>
+
+<h2> Formateurs</h2> 
+
+<a href="{{path ('add_formateur')}}"> Ajouter une formation</a>
+
+<h2> Categorie </h2> 
+
+<a href="{{path ('add_categorie')}}"> Ajouter une formation</a>
+
+{% endblock %}

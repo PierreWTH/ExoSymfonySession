@@ -21,9 +21,9 @@ class CategorieController extends AbstractController
         ]);
     }
 
-     // Ajouter ou editer un stagiaire
-     #[Route('/categorie/add', name: 'add_categorie')]
-     #[Route('/categorie/{id}/edit', name: 'edit_categorie')]
+     // Ajouter ou editer une catégorie
+     #[Route('admin/categorie/add', name: 'add_categorie')]
+     #[Route('admin/categorie/{id}/edit', name: 'edit_categorie')]
     public function add(ManagerRegistry $doctrine, Categorie $categorie = null, Request $request) : response
     {
 
@@ -61,7 +61,7 @@ class CategorieController extends AbstractController
     }
 
     // Supprimer une categorie
-    #[Route('/categorie/{id}/delete', name: 'delete_categorie')]
+    #[Route('admin/categorie/{id}/delete', name: 'delete_categorie')]
     public function delete(ManagerRegistry $doctrine, Categorie $categorie): Response
     {
         $entityManager = $doctrine->getManager();

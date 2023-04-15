@@ -44,8 +44,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for stagiaire in stagiaires %}
-        {% if stagiaire not in session.stagiaires %}
+        {% for stagiaire in nonInscrits %}
         <tr>
             <td><a href="{{path ('detail_stagiaire', {id : stagiaire.id })}}">{{stagiaire.prenom}} {{stagiaire.nom}}</a></td>
             {% if session.nbPlace > session.stagiaires|length%}
@@ -53,7 +52,6 @@
             {% else %}
                 <td> Complet </td>
         </tr>
-        {% endif %}
         {% endif %}
         {% endfor %}
         

@@ -9,6 +9,7 @@ use App\Entity\Stagiaire;
 
 use App\Form\SessionType;
 
+use App\Repository\SessionRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -71,9 +72,10 @@ class SessionController extends AbstractController
 
     // Afficher les details d'une session
     #[Route('/session/{id}', name: 'detail_session')]
-    public function detail(Session $session, ManagerRegistry $doctrine, $id ): Response
+    public function detail(Session $session, SessionRepository $sr, ManagerRegistry $doctrine, $id ): Response
     {   
         $stagiaires = $doctrine->getRepository(Stagiaire::Class)->findBy([], ["nom"=>"ASC"]);
+        $nonInscrits = $sr->findNonInscrits($id);
         $modules = $doctrine->getRepository(Modules::Class)->findBy([], ["nomModule"=>"ASC"]);
         $modulesBySession = $doctrine->getRepository(Programme::Class)->findBy(["sessions"=> $id], []);
 
@@ -82,6 +84,7 @@ class SessionController extends AbstractController
             'stagiaires' => $stagiaires,
             'modules'=>$modules,
             'modulesBySession'=>$modulesBySession,
+            'nonInscrits' => $nonInscrits
         ]);
     }
 

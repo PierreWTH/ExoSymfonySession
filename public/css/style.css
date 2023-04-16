@@ -94,6 +94,115 @@ nav a {
     font-size: 13px;
 }
 
+
+
+
+
+/*** MENU BURGER ***/
+
+/* Sidenav menu */
+.sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: -250px;
+    background-color: #E5989B;
+    padding-top: 60px;
+    transition: left 0.5s ease;
+  }
+  
+  .sidenav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Sidenav menu links */
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #111;
+  }
+  
+  /* Active class */
+  .sidenav.active {
+    left: 0;
+  }
+  
+  /* Close btn */
+  .sidenav .close {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+  }
+  
+  .burger-icon span {
+    display: block;
+    width: 35px;
+    height: 5px;
+    background-color: white;
+    margin: 6px 6px;
+  }
+
+  .burger-background{
+    background-color: #E5989B;
+    padding: 10px;
+    display: none;
+    position: relative;
+  }
+
+  .burger-logo{
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    font-size: 30px;
+    color: white;
+    font-family: 'oswald';
+    display: none;
+  }
+
+  .burger-security{
+    font-size: 10px;
+  }
+  
+#mySidenav{
+    display: none;
+}
+
+#openBtn {
+display: none;
+  }
+
+  @media (max-width: 1155px){
+    nav {
+        display:  none;
+    }
+    #openBtn {
+        display: block;
+    }
+    #mySidenav{
+    display: block;
+    }
+
+    .burger-background{
+        display: block
+      }
+    
+      .burger-logo{
+        display: block;
+      }
+}
+
 /**** TABLEAUX ****/
 
 .titre-page {

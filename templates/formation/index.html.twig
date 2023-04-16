@@ -3,11 +3,12 @@
 {% block title %}Hello FormationController!{% endblock %}
 
 {% block body %}
- 
+ <div class="titre-page">
 <h1> Liste des formations </h1>
 {% if is_granted('ROLE_ADMIN') %}
 <a href="{{path ('add_formation')}}">Ajouter une formation</a> 
 {% endif %}
+</div>
 
 <table>
     <thead>

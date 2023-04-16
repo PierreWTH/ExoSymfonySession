@@ -3,12 +3,14 @@
 {% block title %}Hello CategorieController!{% endblock %}
 
 {% block body %}
+<div class="titre-page">
 
 <h1>Liste des catégories</h1>
-
 {% if is_granted('ROLE_ADMIN') %}
 <a href="{{path ('add_categorie')}}">Ajouter une catégorie</a> 
 {% endif %}
+
+</div>
 
 <table>
     <thead>

@@ -3,11 +3,12 @@
 {% block title %} Liste des stagiaires {% endblock %}
 
 {% block body %}
-
+<div class="titre-page">
 <h1> Liste des stagiaires </h1>
 {% if is_granted('ROLE_ADMIN') %}
 <a href="{{path ('add_stagiaire')}}">Ajouter un stagiaire</a> 
 {% endif %}
+</div>
 
 <table>
     <thead>

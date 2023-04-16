@@ -4,11 +4,13 @@
 
 {% block body %}
 
+<div class="titre-page">
 <h1>Liste des formateurs</h1>
 
 {% if is_granted('ROLE_ADMIN') %}
 <a href="{{path ('add_formateur')}}">Ajouter un formateur</a>
 {% endif %}
+</div>
 
 <table>
     <thead>

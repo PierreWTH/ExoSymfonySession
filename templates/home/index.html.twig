@@ -13,6 +13,7 @@
 <h1> Bienvenue sur votre tableau de bord, {{ app.user.prenom}} {{app.user.nom }}</h1>
 </div>
 
+<div class="table-container">
 <h2>Sessions en cours : </h2>
 
 <table>
@@ -38,6 +39,8 @@
             <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
             {% if session.stagiaires|length == session.nbPlace %}
             <td> Session complète </td>
+            {% else %}
+            <td></td>
         </tr>
          {% endif %}
         {% endif %}
@@ -72,6 +75,8 @@
             <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
             {% if session.stagiaires|length == session.nbPlace %}
             <td> Session complète </td>
+            {% else %}
+            <td></td>
         </tr>
         {% endif %}
         {% endif %}
@@ -105,11 +110,14 @@
             <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
             {% if session.stagiaires|length == session.nbPlace %}
             <td> Session complète </td>
+            {% else %}
+            <td></td>
         </tr>
         {% endif %}
         {% endif %}
         {% endfor %}  
     </tbody>
 </table>
+</div>
 {% endif %}
 {% endblock %}

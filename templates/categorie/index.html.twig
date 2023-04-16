@@ -7,15 +7,18 @@
 
 <h1>Liste des catégories</h1>
 {% if is_granted('ROLE_ADMIN') %}
-<a href="{{path ('add_categorie')}}">Ajouter une catégorie</a> 
+<a href="{{path ('add_categorie')}}"><i class="fa-regular fa-square-plus"></i> Ajouter une catégorie</a> 
 {% endif %}
 
 </div>
-
+<div class="table-container">
 <table>
     <thead>
         <tr>
             <th>Nom</th>
+            {% if is_granted('ROLE_ADMIN') %}
+            <th>Action</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
@@ -23,11 +26,12 @@
         <tr>
             <td>{{categorie.nomCategorie}}</td>
             {% if is_granted('ROLE_ADMIN') %}
-            <td><a href="{{path ('edit_categorie', {id : categorie.id })}}">Editer</a> <a href="{{path ('delete_categorie', {id : categorie.id })}}">Supprimer</a></td>
+            <td><a href="{{path ('edit_categorie', {id : categorie.id })}}"><i class="fa-solid fa-pen-to-square"></i></a> <a href="{{path ('delete_categorie', {id : categorie.id })}}"><i class="fa-solid fa-trash"></i></a></td>
             {% endif %}
         </tr>
         {% endfor %}
     </tbody>
 </table>
+</div>
 
 {% endblock %}

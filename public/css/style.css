@@ -12,6 +12,10 @@
     font-weight: 200;
 }
 
+.bold{
+    font-weight: 400;
+}
+
 a {
     text-decoration: none;
     color: black;
@@ -103,18 +107,24 @@ nav a {
 
 .titre-page h1{
     font-family: 'oswald';
+    text-align: center;
 }
 
 .table-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     padding: 50px;
+    margin: auto;
+    
 }
 
 table{
     border-collapse: collapse;
     margin: 30px 0px;
+    width: 100%;
+    max-width: 1000px;
     
   }
   
@@ -126,10 +136,102 @@ table{
   }
 
   th{
-    text-align: center;
     background-color: #6D6875;
     padding: 10px;
     color: white;
   }
 
+
+  /**** DETAIL SESSION *****/
+
+
+  .session-detail-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 90px;
+    justify-content: center;
+    margin: auto;
+    
+  }
+
+  .table-session-details{
+    border-collapse: collapse;
+    margin: 30px 0px;
+    width: 600px
+  }
+
+  .table-session-details-non-programmes{
+   width: 600px;
+    margin: 0px;
+  }
+
+  @media (max-width: 1300px){
+    .table-session-details{
+        width: 450px;
+    }
+    .table-session-details-non-programmes{
+        width: 450px;
+    }
+  }
+
+  @media (max-width: 390px){
+    .table-session-details{
+        width: 300px;
+    }
+    .table-session-details-non-programmes{
+        width: 300px;
+
+    }
+  }
+
+  .th-duree{
+    background-color: #f7f7f7;
+    color: black;
+    font-weight: 400;
+  }
+
+  .fa-calendar-xmark{
+    color: #E5989B;
+  }
   
+  .fa-user-xmark{
+    color: #E5989B;
+  }
+
+  .fa-user-plus{
+    color: #B7F7C1;
+  }
+
+  .fa-calendar-plus{
+    color: #B7F7C1;
+    font-size: 18px;
+  }
+
+  .submit-button{
+    background-color: transparent;
+    border: 0px;
+  }
+
+  .input-duree{
+    border: 0px;
+    font-family: 'Poppins';
+    max-width: 50px;
+    text-align: center;
+  }
+
+  .details-contenu{
+    background-color: #f8f8f8;
+    width: 100%;
+    max-width: 1290px;
+    padding: 10px;
+    margin: 40px auto;
+  }
+
+  .modules-non-programmes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #E5989B;
+    color: white;
+    padding: 10px 15px;
+  }

@@ -5,19 +5,25 @@
 {% block body %}
 
 
-
+<div class="titre-page">
 <h1>{{session.nomSession}}</h1>
+</div>
 
-<p> Formateur référent : {{session.formateur.nom}} {{session.formateur.prenom}}</p>
-<p> Date de début : {{session.dateDebut|date('d/m/Y')}}</p>
-<p> Date de fin : {{session.dateFin|date('d/m/Y')}} </p>
-<p> Nombre de places : {{session.nbPlace}}</p>
-<p> Nombre de places disponibles : {{session.nbPlace - session.stagiaires|length}}</p>
-<p> Nombre de modules : {{session.programmes|length}} ( {% for programme in session.programmes %} {{programme.modules.nomModule}} {% endfor %})</p>
+<div class="details-contenu">
+<p> <span class="bold">Formateur référent : </span> {{session.formateur.nom}} {{session.formateur.prenom}}</p>
+<p>  <span class="bold"> Date de début : </span> {{session.dateDebut|date('d/m/Y')}}</p>
+<p>  <span class="bold"> Date de fin : </span> {{session.dateFin|date('d/m/Y')}} </p>
+<p>  <span class="bold"> Nombre de places : </span> {{session.nbPlace}}</p>
+<p>  <span class="bold"> Nombre de places disponibles : </span> {{session.nbPlace - session.stagiaires|length}}</p>
+<p>  <span class="bold"> Nombre de modules : </span> {{session.programmes|length}} ( {% for programme in session.programmes %} {{programme.modules.nomModule}} {% endfor %})</p>
+</div>
 
+<div class="session-detail-container">
+
+<div class="session-stagiaire">
 <h2> Stagiaires inscrits </h2>
 
-<table>
+<table class="table-session-details">
     <thead>
         <tr>
             <th>Stagiaires</th>
@@ -31,7 +37,7 @@
         <tr>
             <td><a href="{{path ('detail_stagiaire', {id : stagiaire.id })}}">{{stagiaire.prenom}} {{stagiaire.nom}}</a></td>
             {% if is_granted('ROLE_ADMIN') %}
-            <td><a href="{{path ('unsubscribe_stagiaire', {id : stagiaire.id, idsession : session.id })}}">Desinscrire</a></td>
+            <td><a href="{{path ('unsubscribe_stagiaire', {id : stagiaire.id, idsession : session.id })}}"><i class="fa-solid fa-user-xmark"></i></a></td>
             {% endif %}
         </tr>
         {% endfor %}
@@ -40,7 +46,7 @@
 
 <h2> Stagiaires non inscrits </h2>
 
-<table>
+<table class="table-session-details">
     <thead>
         <tr>
             <th>Stagiaires</th>
@@ -55,7 +61,7 @@
             <td><a href="{{path ('detail_stagiaire', {id : stagiaire.id })}}">{{stagiaire.prenom}} {{stagiaire.nom}}</a></td>
             {% if session.nbPlace > session.stagiaires|length%}
             {% if is_granted('ROLE_ADMIN') %}
-            <td><a href="{{path ('subscribe_stagiaire', {id : stagiaire.id, idsession : session.id })}}">Inscrire</a></td>
+            <td><a href="{{path ('subscribe_stagiaire', {id : stagiaire.id, idsession : session.id })}}"><i class="fa-solid fa-user-plus"></i></a></td>
             {% endif %}
             {% else %}
                 <td> Complet </td>
@@ -65,10 +71,11 @@
         
     </tbody>
 </table>
-
+</div>
+<div class="session-programme">
 <h2> Programme </h2>
 
-<table>
+<table class="table-session-details">
     <thead>
         <tr>
             <th>Module</th>
@@ -86,27 +93,31 @@
             <td>{{programme.modules.categorie.nomCategorie}}</td>
             <td>{{programme.duree}}</td>
             {% if is_granted('ROLE_ADMIN') %}
-            <td><a href="{{path ('remove_module', {id : programme.id, idsession : session.id })}}">Déprogrammer</a></td>
+            <td><a href="{{path ('remove_module', {id : programme.id, idsession : session.id })}}"><i class="fa-regular fa-calendar-xmark"></i></a></td>
             {% endif %}
         </tr>
         {% endfor %}
-        
-            <th>Durée totale : 
+        <tr>
+            <th class="th-duree">Durée totale : 
             {% set totalJour = 0 %}
             {% for module in session.programmes %}
                                 {% set totalJour = totalJour + module.duree %}
                                 
                                 {% endfor %}  
-                                {{ totalJour }} jours 
                                 
             </th>
+        <th class="th-duree"></th>
+        <th class="th-duree">{{ totalJour }}</th>
+        <th class="th-duree"></th>
         </tr>
     </tbody>
 </table>
-
+<div class="modules-non-programmes">
 <h2> Modules non programmés </h2>
+<i class="fa-solid fa-chevron-up"></i>
+</div>
 
-<table>
+<table class="table-session-details-non-programmes">
     <thead>
         <tr>
             <th>Module</th>
@@ -126,8 +137,8 @@
             <td> {{module.nomModule}} </td>
             <td> {{module.categorie.nomCategorie}} </td>
             {% if is_granted('ROLE_ADMIN') %}
-            <td><input name = 'duree' id="{{module.id}}" type="number" value="0" min="0"/></td>
-            <td><input type="submit" name="submit" value="Programmer"/></td>
+            <td><input name = 'duree' id="{{module.id}}" type="number" value="0" min="0" class="input-duree"/> jours</td>
+            <td><button type="submit" name="submit" class="submit-button"><i class="fa-regular fa-calendar-plus"/></i></button></td>
             {% endif %}
         </tr>
         </form>
@@ -138,5 +149,7 @@
         
     </tbody>
 </table>
+</div>
+</div>
 
 {% endblock %}

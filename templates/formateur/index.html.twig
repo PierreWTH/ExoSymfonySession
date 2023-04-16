@@ -8,15 +8,15 @@
 <h1>Liste des formateurs</h1>
 
 {% if is_granted('ROLE_ADMIN') %}
-<a href="{{path ('add_formateur')}}">Ajouter un formateur</a>
+<a href="{{path ('add_formateur')}}"><i class="fa-regular fa-square-plus"></i> Ajouter un formateur</a>
 {% endif %}
 </div>
-
+<div class="table-container">
 <table>
     <thead>
         <tr>
-            <th>Nom</th>
             <th>Prenom</th>
+            <th>Nom</th>
             {% if is_granted('ROLE_ADMIN') %}
             <th>Gerer</th>
             {% endif %}
@@ -28,11 +28,12 @@
             <td><a href="{{path ('detail_formateur', {id : formateur.id })}}">{{formateur.prenom}}</a></td>
             <td>{{formateur.nom}}</td>
             {% if is_granted('ROLE_ADMIN') %}
-            <td><a href="{{path ('edit_formateur', {id : formateur.id })}}">Editer</a> <a href="{{path ('delete_formateur', {id : formateur.id })}}">Supprimer</a></td>
+            <td><a href="{{path ('edit_formateur', {id : formateur.id })}}"><i class="fa-solid fa-pen-to-square"></i></a> <a href="{{path ('delete_formateur', {id : formateur.id })}}"><i class="fa-solid fa-trash"></i></a></td>
             {% endif %}
         </tr>
         {% endfor %}
     </tbody>
 </table>
+</div>
 
 {% endblock %}

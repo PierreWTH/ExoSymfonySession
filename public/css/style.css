@@ -150,7 +150,7 @@ table{
     flex-wrap: wrap;
     gap: 90px;
     justify-content: center;
-    margin: auto;
+    margin: 0px 0px 80px auto;
     
   }
 
@@ -174,7 +174,7 @@ table{
     }
   }
 
-  @media (max-width: 390px){
+  @media (max-width: 500px){
     .table-session-details{
         width: 300px;
     }
@@ -205,6 +205,10 @@ table{
   .fa-calendar-plus{
     color: #B7F7C1;
     font-size: 18px;
+  }
+
+  .fa-chevron-up{
+    font-size: 30px;
   }
 
   .submit-button{

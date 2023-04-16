@@ -3,19 +3,22 @@
 {% block title %} Liste des stagiaires {% endblock %}
 
 {% block body %}
-
+<div class="titre-page">
 <h1> Informations de {{stagiaire.prenom}} {{stagiaire.nom}} </h1>
+</div>
+<div class="details-contenu">
+<p><span class="bold">Prenom  : </span> {{stagiaire.prenom}} </p>
+<p> <span class="bold">Nom :</span> {{stagiaire.nom}} </p>
+<p> <span class="bold">Date de naissance :</span> {{stagiaire.dateNaissance |date('d/m/Y')}} </p>
+<p> <span class="bold">Telephone : </span>{{stagiaire.telephone}} </p>
+<p> <span class="bold">Adresse :</span> {{stagiaire.adresse}} </p>
+</div>
 
-<p> Prenom  : {{stagiaire.prenom}} </p>
-<p> Nom : {{stagiaire.nom}} </p>
-<p> Date de naissance : {{stagiaire.dateNaissance |date('d/m/Y')}} </p>
-<p> Telephone : {{stagiaire.telephone}} </p>
-<p> Adresse : {{stagiaire.adresse}} </p>
-
-<h2> Sessions du stagiaire </h2>
-
-
+<div class="titre-page">
+<h2> SESSIONS DU STAGIAIRE </h2>
+</div>
  
+<div class="table-container">
     <h2>Sessions en cours : </h2>
 
 <table>
@@ -102,6 +105,7 @@
         {% endfor %}  
     </tbody>
 </table>
+</div>
 
 {% endblock %}
 

@@ -88,8 +88,8 @@
 
     <div class="session-programme">
         <h2> Programme </h2>
-
-        <table class="table-session-details">
+        <div class="modules-programmes">
+        <table class="table-session-details" id = "responsive-table">
             <thead>
                 <tr>
                     <th>Module</th>
@@ -104,18 +104,18 @@
             <tbody>
                 {% for programme in session.programmes %}
                 <tr>
-                    <td>{{programme.modules.nomModule}}</td>
-                    <td>{{programme.modules.categorie.nomCategorie}}</td>
-                    <td>{{programme.duree}}</td>
+                    <td data-label ="Module">{{programme.modules.nomModule}}</td>
+                    <td data-label ="Catégorie">{{programme.modules.categorie.nomCategorie}}</td>
+                    <td data-label ="Durée">{{programme.duree}} jours </td>
                     {# Bouton programmer si User est admin #}
                     {% if is_granted('ROLE_ADMIN') %}
-                    <td><a href="{{path ('remove_module', {id : programme.id, idsession : session.id })}}"><i class="fa-regular fa-calendar-xmark"></i></a></td>
+                    <td data-label ="Déprogrammer"><a href="{{path ('remove_module', {id : programme.id, idsession : session.id })}}"><i class="fa-regular fa-calendar-xmark"></i></a></td>
                     {% endif %}
                 </tr>
                 {% endfor %}
                 <tr>
                     {# Calcul de la durée totale des modules#}
-                    <th class="th-duree">Durée totale : 
+                    <th class="th-duree"> Durée totale : 
                     {% set totalJour = 0 %}
                     {% for module in session.programmes %}
                                         {% set totalJour = totalJour + module.duree %}
@@ -124,7 +124,7 @@
                                         
                     </th>
                 <th class="th-duree"></th>
-                <th class="th-duree">{{ totalJour }}</th>
+                <th class="th-duree">{{ totalJour }} jours </th>
                 {# Ajout d'une case si admin pour l'esthétique : qu'il y ai autant de case dans le td que dans le th#}
                 {% if is_granted('ROLE_ADMIN') %}
                 <th class="th-duree"></th>
@@ -132,13 +132,14 @@
                 </tr>
             </tbody>
         </table>
+        </div>
 
         <div class="modules-non-programmes">
             <h2> Modules non programmés </h2>
             <i class="fa-solid fa-chevron-up"></i>
         </div>
 
-        <table class="table-session-details-non-programmes">
+        <table class="table-session-details-non-programmes" id = "responsive-table">
             <thead>
                 <tr>
                     <th>Module</th>
@@ -156,12 +157,12 @@
                 
                 <form action="{{path ('add_module', {id : module.id, idsession : session.id })}}" method="post">
                 <tr>
-                    <td> {{module.nomModule}} </td>
-                    <td> {{module.categorie.nomCategorie}} </td>
+                    <td data-label ="Module"> {{module.nomModule}} </td>
+                    <td data-label ="Categorie"> {{module.categorie.nomCategorie}} </td>
                     {# Si User est admin, affichage du form pour la durée #}
                     {% if is_granted('ROLE_ADMIN') %}
-                    <td><input name = 'duree' id="{{module.id}}" type="number" value="0" min="0" class="input-duree"/> jours</td>
-                    <td><button type="submit" name="submit" class="submit-button"><i class="fa-regular fa-calendar-plus"/></i></button></td>
+                    <td data-label ="Durée"><input name = 'duree' id="{{module.id}}" type="number" value="0" min="0" class="input-duree"/> jours</td>
+                    <td data-label ="Programmer"><button type="submit" name="submit" class="submit-button"><i class="fa-regular fa-calendar-plus"/></i></button></td>
                     {% endif %}
                 </tr>
                 </form>

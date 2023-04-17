@@ -31,7 +31,7 @@
 
     <h2>Sessions en cours : </h2>
 
-    <table>
+    <table id = "responsive-table">
         <thead>
             <tr>
                 <th>Formation</th>
@@ -48,11 +48,11 @@
             {# Et que l'objet stagiaire et dans le tableau d'objet stagiaires de la session #}
             {% if session.dateDebut|date('d/m/Y') <= 'now'|date('d/m/Y') and session.dateFin|date('d/m/Y') >= 'now'|date('d/m/Y') and stagiaire in session.stagiaires %}
             <tr>
-                <td>{{session.formation.nomFormation}}</td>
-                <td><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
-                <td>{{session.dateDebut|date('d/m/Y')}}</td>
-                <td>{{session.dateFin |date('d/m/Y')}}</td>
-                <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+                <td data-label = "Formation">{{session.formation.nomFormation}}</td>
+                <td data-label = "Session"><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+                <td data-label = "Début">{{session.dateDebut|date('d/m/Y')}}</td>
+                <td data-label = "Fin">{{session.dateFin |date('d/m/Y')}}</td>
+                <td data-label = "Inscrits">{{session.stagiaires|length}} / {{session.nbPlace}}</td>
             </tr>
             {% endif %}
             {% endfor %}  
@@ -61,7 +61,7 @@
 
     <h2>Sessions à venir : </h2>
 
-    <table>
+    <table id = "responsive-table">
         <thead>
             <tr>
                 <th>Formation</th>
@@ -77,11 +77,11 @@
             {# Et que l'objet stagiaire et dans le tableau d'objet stagiaires de la session #}
             {% if session.dateFin|date('d/m/Y') > 'now'|date('d/m/Y') and session.dateDebut|date('d/m/Y') > 'now'|date('d/m/Y') and stagiaire in session.stagiaires%}
             <tr>
-                <td>{{session.formation.nomFormation}}</td>
-                <td><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
-                <td>{{session.dateDebut|date('d/m/Y')}}</td>
-                <td>{{session.dateFin |date('d/m/Y')}}</td>
-                <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+                <td data-label = "Formation">{{session.formation.nomFormation}}</td>
+                <td data-label = "Session"><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+                <td data-label = "Début">{{session.dateDebut|date('d/m/Y')}}</td>
+                <td data-label = "Fin">{{session.dateFin |date('d/m/Y')}}</td>
+                <td data-label = "Inscrits">{{session.stagiaires|length}} / {{session.nbPlace}}</td>
             </tr>
             {% endif %}
             {% endfor %}  
@@ -91,7 +91,7 @@
 
     <h2>Sessions passées: </h2>
 
-    <table>
+    <table id = "responsive-table">
         <thead>
             <tr>
                 <th>Formation</th>
@@ -108,11 +108,11 @@
             {# Et que l'objet stagiaire et dans le tableau d'objet stagiaires de la session #}
             {% if session.dateFin|date('d/m/Y') < 'now'|date('d/m/Y') and stagiaire in session.stagiaires %}
             <tr>
-                <td>{{session.formation.nomFormation}}</td>
-                <td><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
-                <td>{{session.dateDebut|date('d/m/Y')}}</td>
-                <td>{{session.dateFin |date('d/m/Y')}}</td>
-                <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+                <td data-label = "Formation">{{session.formation.nomFormation}}</td>
+                <td data-label = "Session"><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+                <td data-label = "Début">{{session.dateDebut|date('d/m/Y')}}</td>
+                <td data-label = "Fin">{{session.dateFin |date('d/m/Y')}}</td>
+                <td data-label = "Inscrits">{{session.stagiaires|length}} / {{session.nbPlace}}</td>
             </tr>
             {% endif %}
             {% endfor %}  

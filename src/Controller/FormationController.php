@@ -11,7 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FormationController extends AbstractController
-{
+{   
+    // Liste des formations
     #[Route('/formation', name: 'app_formation')]
     public function index(ManagerRegistry $doctrine): Response
     {   

@@ -18,66 +18,88 @@
     </head>
 
     <nav>
-        <div>
-            {% if app.user %}
-            <a href="{{ path('app_home') }}" class="nav-logo">SESSION </a>
-        </div>
+        {# DESKTOP NAVBAR - Si l'utilisateur est connecté #}
+        {% if app.user %}
 
-        <div>
-            <a href="{{ path('app_formation') }}">FORMATION</a>
-            <a href="{{ path('app_session') }}">SESSION</a>
-            <a href="{{ path('app_stagiaire') }}">STAGIAIRES</a>
-            <a href="{{ path('app_formateur') }}">FORMATEURS</a>
-            <a href="{{ path('app_categorie') }}">CATEGORIE</a>
-        </div>
+            {# Logo #}
+            <div>
+                <a href="{{ path('app_home') }}" class="nav-logo">SESSION </a>
+            </div>
 
-        <div>
-            <a href="{{ path('app_profil') }}" class="nav-item-background"><i class="fa-solid fa-user"></i> Mon profil</a>
-            {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('admin_pannel') }}" class="nav-item-background"><i class="fa-solid fa-hammer"></i> Administration</a>
-            {% endif %}
-            <a href="{{ path('app_logout') }}" class="nav-item-background"><i class="fa-solid fa-right-from-bracket"></i> Se deconnecter</a>
-        </div>
-            {% else %}
-        <div class="not-connected-navbar">
+            {# Liens de navigation #}
+            <div>
+                <a href="{{ path('app_formation') }}">FORMATION</a>
+                <a href="{{ path('app_session') }}">SESSION</a>
+                <a href="{{ path('app_stagiaire') }}">STAGIAIRES</a>
+                <a href="{{ path('app_formateur') }}">FORMATEURS</a>
+                <a href="{{ path('app_categorie') }}">CATEGORIE</a>
+            </div>
 
-        <div>
-        <a href="{{ path('app_home') }}" class="nav-logo">SESSION </a>
-        </div>
-    
-        <div>
-        <a href="{{ path('app_login') }}" class="nav-item-background"><i class="fa-solid fa-right-to-bracket"></i> Se connecter</a>
-        <a href="{{ path('app_register') }}" class="nav-item-background"> <i class="fa-regular fa-address-card"></i> S'inscrire</a>
-        </div>
+            {# Liens liés a l'utilisateur #}
+            <div>
+                <a href="{{ path('app_profil') }}" class="nav-item-background"><i class="fa-solid fa-user"></i> Mon profil</a>
+                {# Si user est admin, affichage du bouton pour aller au panneau de controle #}
+                {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('admin_pannel') }}" class="nav-item-background"><i class="fa-solid fa-hammer"></i> Administration</a>
+                {% endif %}
+                <a href="{{ path('app_logout') }}" class="nav-item-background"><i class="fa-solid fa-right-from-bracket"></i> Se deconnecter</a>
+            </div>
 
-        </div>
+        {# DESKTOP NAVBAR - Si l'utilisateur n'est pas connecté #}
+        {% else %}
+        
+            <div class="not-connected-navbar">
+                {# Logo #}
+                <div>
+                    <a href="{{ path('app_home') }}" class="nav-logo">SESSION </a>
+                </div>
+
+                {# Liens login / register #}
+                <div>
+                    <a href="{{ path('app_login') }}" class="nav-item-background"><i class="fa-solid fa-right-to-bracket"></i> Se connecter</a>
+                    <a href="{{ path('app_register') }}" class="nav-item-background"> <i class="fa-regular fa-address-card"></i> S'inscrire</a>
+                </div>
+            </div>
+
         {% endif %}
 
     </nav>
     
-        <div id="mySidenav" class="sidenav">
-            <a id="closeBtn" href="#" class="close">×</a>
-            {% if app.user %}
-            <ul>
+    {# Menu burger #}
+    <div id="mySidenav" class="sidenav">
+        <a id="closeBtn" href="#" class="close">×</a>
+        {# Si l'utilisateur est connecté #}
+        {% if app.user %}
+        
+        <ul>
+            {# Liens de navigation #}
             <li><a href="{{ path('app_formation') }}">FORMATION</a></li>
             <li><a href="{{ path('app_session') }}">SESSION</a></li>
             <li><a href="{{ path('app_stagiaire') }}">STAGIAIRES</a></li>
             <li><a href="{{ path('app_formateur') }}">FORMATEURS</a></li>
             <li><a href="{{ path('app_categorie') }}">CATEGORIE</a></li>
+
+            {# Liens liés a l'utilisateur#}
             <li><a href="{{ path('app_profil') }}"><i class="fa-solid fa-user "></i> Mon profil</a></li>
-        {% if is_granted('ROLE_ADMIN') %}
+            {#Si user est admin, affichage du bouton d'administration #}
+            {% if is_granted('ROLE_ADMIN') %}
             <li><a href="{{ path('admin_pannel') }}"><i class="fa-solid fa-hammer "></i> Administration</a></li>
-        {% endif %}
+            {% endif %}
+
             <li><a href="{{ path('app_logout') }}"><i class="fa-solid fa-right-from-bracket "></i> Se deconnecter</a></li>
-            </ul>
+        </ul>
+
+        {# Si l'utilisateur n'est pas connecté #}
         {% else %}
-            <ul>
+        <ul>
+            {# Liens de login / register#}
             <li><a href="{{ path('app_login') }}"><i class="fa-solid fa-right-to-bracket "></i> Se connecter</a></li>
             <li><a href="{{ path('app_register') }}"> <i class="fa-regular fa-address-card"></i> S'inscrire</a></li>
-            </ul>
-            {% endif %}
-        </div>
-        <div class="burger-background">
+        </ul>
+        {% endif %}
+    </div>
+    {# Icone, arrière plan et logo SESSION du menu burger #}
+    <div class="burger-background">
         <a href="#" id="openBtn">
             <span class="burger-icon">
             <span></span>
@@ -85,10 +107,14 @@
             <span></span>
             </span>
         </a>
+
         <a href="{{ path('app_home') }}" class="burger-logo">SESSION</a>
-        </div>
+    </div>
+
     <body>
         {% block body %}{% endblock %}
     </body>
+
     <script src="{{ asset('js/function.js')}}"></script>
+    
 </html>

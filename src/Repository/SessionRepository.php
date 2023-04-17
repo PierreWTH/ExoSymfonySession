@@ -39,7 +39,7 @@ class SessionRepository extends ServiceEntityRepository
         }
     }
 
-    // Afficher les stagiaires non inscrits
+    // Retourn les stagiaires non inscrits suivant la session
     public function findNonInscrits($sessionId){
 
     $em = $this->getEntityManager();
@@ -67,6 +67,7 @@ class SessionRepository extends ServiceEntityRepository
 
     }
 
+    // Retourne tous les modules non programmées suivant la session
     public function findNonProgrammes($sessionId){
 
         $em = $this->getEntityManager();

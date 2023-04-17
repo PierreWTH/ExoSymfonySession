@@ -4,6 +4,8 @@
 
 {% block body %}
 
+{# Message d'erreur si User pas connecté #}
+
 {% if not app.user %}
 
 <p class="titre-page"> Connectez vous pour accéder au contenu. </p>
@@ -11,38 +13,40 @@
 {% else %}
 
 <div class="titre-page">
-<h1> Liste des stagiaires </h1>
-{% if is_granted('ROLE_ADMIN') %}
-<a href="{{path ('add_stagiaire')}}"><i class="fa-regular fa-square-plus"></i> Ajouter un stagiaire </a> 
-{% endif %}
+    <h1> Liste des stagiaires </h1>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{path ('add_stagiaire')}}"><i class="fa-regular fa-square-plus"></i> Ajouter un stagiaire </a> 
+    {% endif %}
 </div>
 
 <div class="table-container">
-<table>
-    <thead>
-        <tr>
-            <th>Prenom</th>
-            <th>Nom</th>
-            {% if is_granted('ROLE_ADMIN') %}
-            <th>Gerer</th>
-            {% endif %}
-            
-            
-        </tr>
-    </thead>
-    <tbody>
-        {% for stagiaire in stagiaires %}
-        <tr>
-            <td><a href="{{path ('detail_stagiaire', {id : stagiaire.id })}}">{{stagiaire.prenom}}</a></td>
-            <td>{{stagiaire.nom}}</td>
-            {% if is_granted('ROLE_ADMIN') %}
-            <td><a href="{{path ('edit_stagiaire', {id : stagiaire.id })}}"><i class="fa-solid fa-pen-to-square"></i></a> <a href="{{path ('delete_stagiaire', {id : stagiaire.id })}}"><i class="fa-solid fa-trash"></i></a></td>
-            {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <th>Prenom</th>
+                <th>Nom</th>
+                {# Colonne gerer si l'utilisateur est admin #}
+                {% if is_granted('ROLE_ADMIN') %}
+                <th>Gerer</th>
+                {% endif %}
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for stagiaire in stagiaires %}
+            <tr>
+                <td><a href="{{path ('detail_stagiaire', {id : stagiaire.id })}}">{{stagiaire.prenom}}</a></td>
+                <td>{{stagiaire.nom}}</td>
+                {# Bouton supprimer/editer si l'utilisateur est admin #}
+                {% if is_granted('ROLE_ADMIN') %}
+                <td><a href="{{path ('edit_stagiaire', {id : stagiaire.id })}}"><i class="fa-solid fa-pen-to-square"></i></a> <a href="{{path ('delete_stagiaire', {id : stagiaire.id })}}"><i class="fa-solid fa-trash"></i></a></td>
+                {% endif %}
 
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 
 {% endif %}

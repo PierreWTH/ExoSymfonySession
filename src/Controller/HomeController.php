@@ -9,7 +9,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
-{
+{   
+    // Route vers page d'acceuil avec l'affichage des sessions
     #[Route('/home', name: 'app_home')]
     public function index(ManagerRegistry $doctrine): Response
     {
@@ -20,7 +21,7 @@ class HomeController extends AbstractController
         ]);
     }
 
-    
+    // Route vers la page profil
     #[Route('/profil', name: 'app_profil')]
     public function viewProfil(): Response
     {

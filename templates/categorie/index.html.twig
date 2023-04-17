@@ -4,6 +4,7 @@
 
 {% block body %}
 
+{# Message si l'utilisateur n'est pas connecté #}
 {% if not app.user %}
 
 <p class="titre-page"> Connectez vous pour accéder au contenu. </p>
@@ -11,34 +12,42 @@
 {% else %}
 
 <div class="titre-page">
+    <h1>Liste des catégories</h1>
 
-<h1>Liste des catégories</h1>
-{% if is_granted('ROLE_ADMIN') %}
-<a href="{{path ('add_categorie')}}"><i class="fa-regular fa-square-plus"></i> Ajouter une catégorie</a> 
-{% endif %}
+    {# Ajouter une catégorie si User est admin #}
 
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{path ('add_categorie')}}"><i class="fa-regular fa-square-plus"></i> Ajouter une catégorie</a> 
+    {% endif %}
 </div>
+
 <div class="table-container">
-<table>
-    <thead>
-        <tr>
-            <th>Nom</th>
-            {% if is_granted('ROLE_ADMIN') %}
-            <th>Action</th>
-            {% endif %}
-        </tr>
-    </thead>
-    <tbody>
-        {% for categorie in categories %}
-        <tr>
-            <td>{{categorie.nomCategorie}}</td>
-            {% if is_granted('ROLE_ADMIN') %}
-            <td><a href="{{path ('edit_categorie', {id : categorie.id })}}"><i class="fa-solid fa-pen-to-square"></i></a> <a href="{{path ('delete_categorie', {id : categorie.id })}}"><i class="fa-solid fa-trash"></i></a></td>
-            {% endif %}
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+
+                {# Colonne action si User est admin #}
+                {% if is_granted('ROLE_ADMIN') %}
+                <th>Action</th>
+                {% endif %}
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for categorie in categories %}
+            <tr>
+                <td>{{categorie.nomCategorie}}</td>
+
+                {# Ligne avec supprimer et editer si User est admin #}
+                {% if is_granted('ROLE_ADMIN') %}
+                <td><a href="{{path ('edit_categorie', {id : categorie.id })}}"><i class="fa-solid fa-pen-to-square"></i></a> <a href="{{path ('delete_categorie', {id : categorie.id })}}"><i class="fa-solid fa-trash"></i></a></td>
+                {% endif %}
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 
 {% endif %}

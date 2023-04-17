@@ -74,7 +74,7 @@ class SessionController extends AbstractController
     #[Route('session/{id}', name: 'detail_session')]
     public function detail(Session $session, SessionRepository $sr, ManagerRegistry $doctrine, $id ): Response
     {   
-
+        // Utilisation des fonctions des repository
         $nonInscrits = $sr->findNonInscrits($id);
         $nonProgrammes = $sr->findNonProgrammes($id);
 

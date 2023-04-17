@@ -4,6 +4,7 @@
 
 {% block body %}
 
+{# Message si l'utilisateur n'est pas connecté #}
 {% if not app.user %}
 
 <p class="titre-page"> Connectez vous pour accéder au contenu. </p>
@@ -11,35 +12,43 @@
 {% else %}
 
 <div class="titre-page">
-<h1>Liste des formateurs</h1>
+    <h1>Liste des formateurs</h1>
 
-{% if is_granted('ROLE_ADMIN') %}
-<a href="{{path ('add_formateur')}}"><i class="fa-regular fa-square-plus"></i> Ajouter un formateur</a>
-{% endif %}
+    {# Bouton d'ajout formateur si User est admin #}
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{path ('add_formateur')}}"><i class="fa-regular fa-square-plus"></i> Ajouter un formateur</a>
+    {% endif %}
 </div>
+
 <div class="table-container">
-<table>
-    <thead>
-        <tr>
-            <th>Prenom</th>
-            <th>Nom</th>
-            {% if is_granted('ROLE_ADMIN') %}
-            <th>Gerer</th>
-            {% endif %}
-        </tr>
-    </thead>
-    <tbody>
-        {% for formateur in formateurs %}
-        <tr>
-            <td><a href="{{path ('detail_formateur', {id : formateur.id })}}">{{formateur.prenom}}</a></td>
-            <td>{{formateur.nom}}</td>
-            {% if is_granted('ROLE_ADMIN') %}
-            <td><a href="{{path ('edit_formateur', {id : formateur.id })}}"><i class="fa-solid fa-pen-to-square"></i></a> <a href="{{path ('delete_formateur', {id : formateur.id })}}"><i class="fa-solid fa-trash"></i></a></td>
-            {% endif %}
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <table>
+        <thead>
+            <tr>
+                <th>Prenom</th>
+                <th>Nom</th>
+
+                {# Colonne gerer si User est admin #}
+                {% if is_granted('ROLE_ADMIN') %}
+                <th>Gerer</th>
+                {% endif %}
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for formateur in formateurs %}
+            <tr>
+                <td><a href="{{path ('detail_formateur', {id : formateur.id })}}">{{formateur.prenom}}</a></td>
+                <td>{{formateur.nom}}</td>
+
+                {# Ligne avec supprimer et éditer si User est admin #}
+                {% if is_granted('ROLE_ADMIN') %}
+                <td><a href="{{path ('edit_formateur', {id : formateur.id })}}"><i class="fa-solid fa-pen-to-square"></i></a> <a href="{{path ('delete_formateur', {id : formateur.id })}}"><i class="fa-solid fa-trash"></i></a></td>
+                {% endif %}
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 
 {% endif %}

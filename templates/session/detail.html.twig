@@ -136,39 +136,40 @@
 
         <div class="modules-non-programmes">
             <h2> Modules non programmés </h2>
-            <i class="fa-solid fa-chevron-up"></i>
+            <button id="togg1"><i class="fa-solid fa-chevron-up"></i></button>
         </div>
-
-        <table class="table-session-details-non-programmes" id = "responsive-table">
-            <thead>
-                <tr>
-                    <th>Module</th>
-                    <th>Categorie</th>
-                    {# Si User est admin, affichage de la colonne duree et action #}
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <th>Durée</th>
-                    <th>Action</th>
-                    {% endif %}
-                </tr>
-            </thead>
-            <tbody>
-            
-                {% for module in nonProgrammes %}
+        <div id="d1">
+            <table class="table-session-details-non-programmes" id = "responsive-table">
+                <thead>
+                    <tr>
+                        <th>Module</th>
+                        <th>Categorie</th>
+                        {# Si User est admin, affichage de la colonne duree et action #}
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <th>Durée</th>
+                        <th>Action</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
                 
-                <form action="{{path ('add_module', {id : module.id, idsession : session.id })}}" method="post">
-                <tr>
-                    <td data-label ="Module"> {{module.nomModule}} </td>
-                    <td data-label ="Categorie"> {{module.categorie.nomCategorie}} </td>
-                    {# Si User est admin, affichage du form pour la durée #}
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <td data-label ="Durée"><input name = 'duree' id="{{module.id}}" type="number" value="0" min="0" class="input-duree"/> jours</td>
-                    <td data-label ="Programmer"><button type="submit" name="submit" class="submit-button"><i class="fa-regular fa-calendar-plus"/></i></button></td>
-                    {% endif %}
-                </tr>
-                </form>
-                {% endfor %} 
-            </tbody>
-        </table>
+                    {% for module in nonProgrammes %}
+                    
+                    <form action="{{path ('add_module', {id : module.id, idsession : session.id })}}" method="post">
+                    <tr>
+                        <td data-label ="Module"> {{module.nomModule}} </td>
+                        <td data-label ="Categorie"> {{module.categorie.nomCategorie}} </td>
+                        {# Si User est admin, affichage du form pour la durée #}
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <td data-label ="Durée"><input name = 'duree' id="{{module.id}}" type="number" value="0" min="0" class="input-duree"/> jours</td>
+                        <td data-label ="Programmer"><button type="submit" name="submit" class="submit-button"><i class="fa-regular fa-calendar-plus"/></i></button></td>
+                        {% endif %}
+                    </tr>
+                    </form>
+                    {% endfor %} 
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

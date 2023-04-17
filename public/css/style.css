@@ -377,6 +377,13 @@ table{
     padding: 10px 15px;
   }
 
+ #togg1 {
+    border: 0px;
+    background-color: transparent;
+    color: white;
+  }
+
+  
   /*** Panneau de controle ****/
 
   .control-pannel-command{

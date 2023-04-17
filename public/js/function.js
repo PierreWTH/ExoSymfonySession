@@ -29,4 +29,3 @@ togg1.addEventListener("click", () => {
     d1.style.display = "block";
   }
 })
-

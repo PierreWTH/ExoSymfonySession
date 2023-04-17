@@ -343,7 +343,7 @@ table{
     font-size: 18px;
   }
 
-  .fa-chevron-up{
+  .fa-chevron-down{
     font-size: 30px;
   }
 
@@ -383,7 +383,9 @@ table{
     color: white;
   }
 
-  
+  #d1{
+    display: none;
+  }
   /*** Panneau de controle ****/
 
   .control-pannel-command{

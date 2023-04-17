@@ -4,6 +4,23 @@
 
 {% block body %}
 
-{{form(formAddSession)}}
+<div class="add-form-shadow">
+
+    <h1 class="titre-page"> Ajouter une session </h1>
+
+    <div class="add-form">
+    {{form_start(formAddSession)}}
+    {{form_row(formAddSession.nomSession)}}
+    {{form_row(formAddSession.nbPlace)}}
+    {{form_row(formAddSession.dateDebut)}}
+    {{form_row(formAddSession.dateFin)}}
+    {{form_row(formAddSession.formation)}}
+    {{form_row(formAddSession.formateur)}}
+    <div class="form-add-submit">
+    {{form_row(formAddSession.ajouter)}}
+    </div>
+    {{form_end(formAddSession)}}
+    </div>
+</div>
 
 {% endblock %}

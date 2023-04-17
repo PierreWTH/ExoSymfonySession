@@ -4,6 +4,23 @@
 
 {% block body %}
 
-{{form(formAddFormateur)}}
+<div class="add-form-shadow">
+
+    <h1 class="titre-page"> Ajouter un formateur </h1>
+
+    <div class="add-form">
+    {{form_start(formAddFormateur)}}
+    {{form_row(formAddFormateur.nom)}}
+    {{form_row(formAddFormateur.prenom)}}
+    {{form_row(formAddFormateur.dateNaissance)}}
+    {{form_row(formAddFormateur.telephone)}}
+    {{form_row(formAddFormateur.adresse)}}
+    <div class="form-add-submit">
+    {{form_row(formAddFormateur.submit)}}
+    </div>
+    {{form_end(formAddFormateur)}}
+    </div>
+
+</div>
 
 {% endblock %}

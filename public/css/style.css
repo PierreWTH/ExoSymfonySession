@@ -398,3 +398,61 @@ table{
     border-radius: 5px;
     margin: 10px 0px;
   }
+
+  /*** Formulaire ***/
+
+  .add-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0px;
+    
+  }
+
+  .add-form input {
+    border: 0px;
+    background-color: #f7f7f7;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0px;
+    text-align: center;
+    display: block;
+    width: 150px;
+  }
+
+  .add-form label{
+    display: block;
+    float: left;
+    width: 150px;
+
+  }
+
+  .add-form button {
+    margin-top: 10px;
+    border: 0px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #E5989B;
+    color: white;
+    width: 300px;
+  }
+
+  .add-form select{
+    border: 0px;
+    background-color: #f7f7f7;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0px;
+    text-align: center;
+    display: block;
+    width: 150px;
+  }
+  
+  .add-form-shadow{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    width: 350px;
+    margin: 50px auto;
+
+  }
+

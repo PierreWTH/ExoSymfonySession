@@ -3,6 +3,13 @@
 {% block title %} Liste des stagiaires {% endblock %}
 
 {% block body %}
+
+{% if not app.user %}
+
+<p class="titre-page"> Connectez vous pour accéder au contenu. </p>
+
+{% else %}
+
 <div class="titre-page">
 <h1> Liste des stagiaires </h1>
 {% if is_granted('ROLE_ADMIN') %}
@@ -38,5 +45,5 @@
 </table>
 </div>
 
-
+{% endif %}
 {% endblock %}

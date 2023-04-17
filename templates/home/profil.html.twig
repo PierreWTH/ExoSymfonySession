@@ -4,8 +4,21 @@
 
 {% block body %}
 
-<p>Prénom : {{ app.user.prenom}}</p>  
-<p>Nom : {{app.user.nom }}</p>
-<p>Email : {{app.user.email }} </p>
+{% if not app.user %}
+
+<p class="titre-page"> Connectez vous pour accéder au contenu. </p>
+
+{% else %}
+
+<h1 class="titre-page"> Mon profil </h1>
+
+<div class="details-contenu">
+<p><span class="bold">Prénom :</span> {{ app.user.prenom}}</p>  
+<p><span class="bold">Nom : </span>{{app.user.nom }}</p>
+<p><span class="bold">Email : </span>{{app.user.email }} </p>
+
+</div>
+
+{% endif %}
 
 {% endblock %}

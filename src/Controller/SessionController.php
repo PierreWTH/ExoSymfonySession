@@ -71,7 +71,7 @@ class SessionController extends AbstractController
      }
 
     // Afficher les details d'une session
-    #[Route('admin/session/{id}', name: 'detail_session')]
+    #[Route('session/{id}', name: 'detail_session')]
     public function detail(Session $session, SessionRepository $sr, ManagerRegistry $doctrine, $id ): Response
     {   
 

@@ -3,6 +3,13 @@
 {% block title %}Hello FormationController!{% endblock %}
 
 {% block body %}
+
+{% if not app.user %}
+
+<p class="titre-page"> Connectez vous pour accéder au contenu. </p>
+
+{% else %}
+
  <div class="titre-page">
 <h1> Liste des formations </h1>
 {% if is_granted('ROLE_ADMIN') %}
@@ -32,5 +39,5 @@
     </tbody>
 </table>
 </div>
-
+{% endif %}
 {% endblock %}

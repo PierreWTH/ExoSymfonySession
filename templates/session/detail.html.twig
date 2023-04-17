@@ -4,6 +4,11 @@
 
 {% block body %}
 
+{% if not app.user %}
+
+<p class="titre-page"> Connectez vous pour accéder au contenu. </p>
+
+{% else %}
 
 <div class="titre-page">
 <h1>{{session.nomSession}}</h1>
@@ -109,7 +114,9 @@
             </th>
         <th class="th-duree"></th>
         <th class="th-duree">{{ totalJour }}</th>
+        {% if is_granted('ROLE_ADMIN') %}
         <th class="th-duree"></th>
+        {% endif %}
         </tr>
     </tbody>
 </table>
@@ -152,5 +159,7 @@
 </table>
 </div>
 </div>
+
+{% endif %}
 
 {% endblock %}

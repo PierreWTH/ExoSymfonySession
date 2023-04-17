@@ -4,6 +4,12 @@
 
 {% block body %}
 
+{% if not app.user %}
+
+<p class="titre-page"> Connectez vous pour accéder au contenu. </p>
+
+{% else %}
+
 <div class="titre-page">
 <h1> Liste des sessions </h1>
 
@@ -16,7 +22,7 @@
 <h2>Sessions en cours : </h2>
 
 
-<table>
+<table id="responsive-table">
     <thead>
         <tr>
             <th>Formation</th>
@@ -35,13 +41,13 @@
         {% for session in sessions %}
         {% if session.dateDebut|date('d/m/Y') <= 'now'|date('d/m/Y') and session.dateFin|date('d/m/Y') >= 'now'|date('d/m/Y')%}
         <tr>
-            <td>{{session.formation.nomFormation}}</td>
-            <td><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
-            <td>{{session.dateDebut|date('d/m/Y')}}</td>
-            <td>{{session.dateFin |date('d/m/Y')}}</td>
-            <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+            <td data-label ="Formation">{{session.formation.nomFormation}}</td>
+            <td data-label ="Session"><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+            <td data-label ="Début">{{session.dateDebut|date('d/m/Y')}}</td>
+            <td data-label ="Fin">{{session.dateFin |date('d/m/Y')}}</td>
+            <td data-label ="Inscrits">{{session.stagiaires|length}} / {{session.nbPlace}}</td>
             {% if is_granted('ROLE_ADMIN') %}
-            <td><a href="{{path ('edit_session', {id : session.id })}}"><i class="fa-solid fa-pen-to-square"></i></a> <a href="{{path ('delete_session', {id : session.id })}}"><i class="fa-solid fa-trash"></i></a></td>
+            <td data-label ="Actions"><a href="{{path ('edit_session', {id : session.id })}}"><i class="fa-solid fa-pen-to-square"></i></a> <a href="{{path ('delete_session', {id : session.id })}}"><i class="fa-solid fa-trash"></i></a></td>
             {% endif %}
             {% if session.stagiaires|length == session.nbPlace %}
             <td> Session complète </td>
@@ -59,7 +65,7 @@
 
 <h2>Sessions à venir : </h2>
 
-<table>
+<table id="responsive-table">
     <thead>
         <tr>
             <th>Formation</th>
@@ -75,15 +81,15 @@
     </thead>
     <tbody>
         {% for session in sessions %}
-        {% if session.dateFin|date('d/m/Y') > 'now'|date('d/m/Y') and session.dateDebut|date('d/m/Y') > 'now'|date('d/m/Y') %}
+        {% if session.dateDebut|date('d/m/Y') > 'now'|date('d/m/Y') and session.dateFin|date('d/m/Y') > 'now'|date('d/m/Y') %}
         <tr>
-            <td>{{session.formation.nomFormation}}</td>
-            <td><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
-            <td>{{session.dateDebut|date('d/m/Y')}}</td>
-            <td>{{session.dateFin |date('d/m/Y')}}</td>
-            <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+            <td data-label ="Formation">{{session.formation.nomFormation}}</td>
+            <td data-label ="Session"><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+            <td data-label ="Début">{{session.dateDebut|date('d/m/Y')}}</td>
+            <td data-label ="Fin">{{session.dateFin |date('d/m/Y')}}</td>
+            <td data-label ="Inscrits">{{session.stagiaires|length}} / {{session.nbPlace}}</td>
             {% if is_granted('ROLE_ADMIN') %}
-            <td><a href="{{path ('edit_session', {id : session.id })}}"><i class="fa-solid fa-pen-to-square"></i></a> <a href="{{path ('delete_session', {id : session.id })}}"><i class="fa-solid fa-trash"></i></a></td>
+            <td data-label ="Actions"><a href="{{path ('edit_session', {id : session.id })}}"><i class="fa-solid fa-pen-to-square"></i></a> <a href="{{path ('delete_session', {id : session.id })}}"><i class="fa-solid fa-trash"></i></a></td>
             {% if session.stagiaires|length == session.nbPlace %}
             <td> Session complète </td>
             {% else %}
@@ -99,7 +105,7 @@
 
 <h2>Sessions passées: </h2>
 
-<table>
+<table id="responsive-table">
     <thead>
         <tr>
             <th>Formation</th>
@@ -116,15 +122,15 @@
     </thead>
     <tbody>
         {% for session in sessions %}
-        {% if session.dateFin|date('d/m/Y') < 'now'|date('d/m/Y') %}
+        {% if session.dateFin|date('d/m/Y') < 'now'|date('d/m/Y')%}
         <tr>
-            <td>{{session.formation.nomFormation}}</td>
-            <td><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
-            <td>{{session.dateDebut|date('d/m/Y')}}</td>
-            <td>{{session.dateFin |date('d/m/Y')}}</td>
-            <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+            <td data-label ="Formation">{{session.formation.nomFormation}}</td>
+            <td data-label ="Session"><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+            <td data-label ="Début">{{session.dateDebut|date('d/m/Y')}}</td>
+            <td data-label ="Fin">{{session.dateFin |date('d/m/Y')}}</td>
+            <td data-label ="Inscrits">{{session.stagiaires|length}} / {{session.nbPlace}}</td>
             {% if is_granted('ROLE_ADMIN') %}
-            <td><a href="{{path ('edit_session', {id : session.id })}}"><i class="fa-solid fa-pen-to-square"></i></a> <a href="{{path ('delete_session', {id : session.id })}}"><i class="fa-solid fa-trash"></i></a></td>
+            <td data-label ="Actions"><a href="{{path ('edit_session', {id : session.id })}}"><i class="fa-solid fa-pen-to-square"></i></a> <a href="{{path ('delete_session', {id : session.id })}}"><i class="fa-solid fa-trash"></i></a></td>
             {% if session.stagiaires|length == session.nbPlace %}
             <td> Session complète </td>
             {% else %}
@@ -137,5 +143,6 @@
     </tbody>
 </table>
 </div>
+{% endif %}
 
 {% endblock %}

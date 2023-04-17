@@ -3,6 +3,13 @@
 {% block title %}Hello FormateurController!{% endblock %}
 
 {% block body %}
+
+{% if not app.user %}
+
+<p class="titre-page"> Connectez vous pour accéder au contenu. </p>
+
+{% else %}
+
 <div class="titre-page">
 <h1> Informations de {{formateur.prenom}} {{formateur.nom}} </h1>
 </div>
@@ -15,13 +22,102 @@
 <p> <span class="bold">Adresse :</span> {{formateur.adresse}} </p>
 </div>
 
-<h2> Sessions du Formateur </h2>
 
-{% for session in sessions %}
-{% if formateur.id == session.formateur.id %}
 
-{{session.nomSession}} <br>
+<div class="table-container">
+    <h2 class="titre-page"> SESSIONS DU FORMATEUR</h2>
+    <h2>Sessions en cours : </h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Formation</th>
+            <th>Nom de la session </th>
+            
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Inscrits</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessions %}
+        {% if session.dateDebut|date('d/m/Y') <= 'now'|date('d/m/Y') and session.dateFin|date('d/m/Y') >= 'now'|date('d/m/Y') and formateur.id == session.formateur.id %}
+        <tr>
+            <td>{{session.formation.nomFormation}}</td>
+            <td><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+            <td>{{session.dateDebut|date('d/m/Y')}}</td>
+            <td>{{session.dateFin |date('d/m/Y')}}</td>
+            {# {{ dump(session.stagiaires)}} #}
+            <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}  
+    </tbody>
+</table>
+
+        
+
+<h2>Sessions à venir : </h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Formation</th>
+            <th>Nom de la session </th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Inscrits</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessions %}
+        {% if session.dateFin|date('d/m/Y') > 'now'|date('d/m/Y') and session.dateDebut|date('d/m/Y') > 'now'|date('d/m/Y') and formateur.id == session.formateur.id%}
+        <tr>
+            <td>{{session.formation.nomFormation}}</td>
+            <td><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+            <td>{{session.dateDebut|date('d/m/Y')}}</td>
+            <td>{{session.dateFin |date('d/m/Y')}}</td>
+            <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}  
+    </tbody>
+</table>
+
+
+<h2>Sessions passées: </h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Formation</th>
+            <th>Nom de la session </th>
+            
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Inscrits</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessions %}
+        {% if session.dateFin|date('d/m/Y') < 'now'|date('d/m/Y') and formateur.id == session.formateur.id %}
+        <tr>
+            <td>{{session.formation.nomFormation}}</td>
+            <td><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+            <td>{{session.dateDebut|date('d/m/Y')}}</td>
+            <td>{{session.dateFin |date('d/m/Y')}}</td>
+            <td>{{session.stagiaires|length}} / {{session.nbPlace}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}  
+    </tbody>
+</table>
+</div>
+
+
+
+
+
 
 {% endif %}
-{% endfor %}
 {% endblock %}

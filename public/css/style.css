@@ -12,6 +12,7 @@
     font-weight: 200;
 }
 
+
 .bold{
     font-weight: 400;
 }
@@ -26,7 +27,7 @@ a:hover{
     color: #6D6875;
 }
 
-h8, h2{
+h1, h2{
     font-family: 'oswald';
 }
 
@@ -94,8 +95,10 @@ nav a {
     font-size: 13px;
 }
 
-
-
+.not-connected-navbar{
+ display: flex; 
+ align-items: center;
+}
 
 
 /*** MENU BURGER ***/
@@ -123,7 +126,7 @@ nav a {
   .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
     color: white;
     display: block;
     transition: 0.3s;
@@ -174,6 +177,8 @@ nav a {
   .burger-security{
     font-size: 10px;
   }
+
+
   
 #mySidenav{
     display: none;
@@ -250,6 +255,28 @@ table{
     color: white;
   }
 
+  @media (max-width: 700px){
+
+    #responsive-table thead {
+    display: none;
+    }
+    
+    #responsive-table tr{
+    display: block;
+    margin-bottom: 40px;
+    }
+    
+    #responsive-table td {
+    display: block;
+    text-align: right;
+    }
+    
+    #responsive-table td:before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    }
+    }
 
   /**** DETAIL SESSION *****/
 
@@ -338,6 +365,7 @@ table{
     max-width: 1290px;
     padding: 10px;
     margin: 40px auto;
+    border-radius: 10px;
   }
 
   .modules-non-programmes{
@@ -347,4 +375,26 @@ table{
     background-color: #E5989B;
     color: white;
     padding: 10px 15px;
+  }
+
+  /*** Panneau de controle ****/
+
+  .control-pannel-command{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f7f7;
+    width: 80%;
+    margin: auto;
+    padding: 30px 0px;
+    border-radius: 10px;
+  }
+
+  .control-pannel-command a {
+    background-color: #E5989B;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px 0px;
   }

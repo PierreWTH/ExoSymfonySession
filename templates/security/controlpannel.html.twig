@@ -4,26 +4,28 @@
 
 {% block body %}
 
-<h1> Panneau de controle </h1>
+<h1 class="titre-page"> Panneau de controle </h1>
 
+<div class="control-pannel-command">
 <h2> Formation </h2> 
 
 <a href="{{path ('add_formation')}}"> Ajouter une formation</a>
 
 <h2> Session </h2> 
 
-<a href="{{path ('add_session')}}"> Ajouter une formation</a>
+<a href="{{path ('add_session')}}"> Ajouter une session</a>
 
 <h2> Stagiaire </h2> 
 
-<a href="{{path ('add_stagiaire')}}"> Ajouter une formation</a>
+<a href="{{path ('add_stagiaire')}}"> Ajouter un stagiaire</a>
 
 <h2> Formateurs</h2> 
 
-<a href="{{path ('add_formateur')}}"> Ajouter une formation</a>
+<a href="{{path ('add_formateur')}}"> Ajouter un formateur</a>
 
 <h2> Categorie </h2> 
 
-<a href="{{path ('add_categorie')}}"> Ajouter une formation</a>
+<a href="{{path ('add_categorie')}}"> Ajouter une catégorie</a>
+</div>
 
 {% endblock %}

@@ -4,6 +4,12 @@
 
 {% block body %}
 
+{% if not app.user %}
+
+<p class="titre-page"> Connectez vous pour accéder au contenu. </p>
+
+{% else %}
+
 <div class="titre-page">
 <h1>Liste des formateurs</h1>
 
@@ -36,4 +42,5 @@
 </table>
 </div>
 
+{% endif %}
 {% endblock %}

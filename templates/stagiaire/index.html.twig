@@ -19,6 +19,12 @@
     {% endif %}
 </div>
 
+{% if stagiaires|length == 0 %}
+
+    <p class="titre-page"> Aucune stagaire à afficher. </p>
+
+ {% else %}
+
 <div class="table-container">
     <table>
         <thead>
@@ -48,6 +54,6 @@
         </tbody>
     </table>
 </div>
-
+{% endif %}
 {% endif %}
 {% endblock %}

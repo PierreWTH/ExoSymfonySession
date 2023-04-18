@@ -21,6 +21,12 @@
     {% endif %}
 </div>
 
+{% if categories|length == 0 %}
+
+<p class="titre-page"> Aucune catégorie à afficher. </p>
+
+{% else %}
+
 <div class="table-container">
     <table>
         <thead>
@@ -50,6 +56,7 @@
     </table>
 </div>
 
+{% endif %}
 {% endif %}
 
 {% endblock %}

@@ -66,9 +66,19 @@ class CategorieController extends AbstractController
     {
         $entityManager = $doctrine->getManager();
         $entityManager->remove($categorie);
+        foreach ($categorie->getModules() as $module) {
+            $categorie->removeModule($module);
+            $entityManager->remove($module); 
+
+            foreach ($module->getProgrammes() as $programme) {
+                $module->removeProgramme($programme);
+                $entityManager->remove($programme); 
+            }
+        }
+
         $entityManager->flush();
 
-        return $this->redirectToRoute('app_categorie');
+    return $this->redirectToRoute('app_categorie');
     }
 
 }

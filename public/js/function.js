@@ -29,3 +29,18 @@ togg1.addEventListener("click", () => {
     d1.style.display = "block";
   }
 })
+
+// Message de prévention avant la suppresion d'un formateur
+
+ function alertSupp(e) {
+
+  if (!confirm('En effaçant le formateur, vous effacez également toutes les sessions qui lui sont rattachées. Voulez-vous continuer ?')) {
+    e.preventDefault();
+    e.stopPropagation();
+
+ return false;
+  }
+  
+   // Si l'utilisateur clique sur "Oui", la fonction ne renvoie rien et l'action par défaut se produira
+  
+}

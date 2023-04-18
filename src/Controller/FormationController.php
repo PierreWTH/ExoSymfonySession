@@ -69,6 +69,10 @@ class FormationController extends AbstractController
     {
         $entityManager = $doctrine->getManager();
         $entityManager->remove($formation);
+        foreach ($formation->getSessions() as $session) {
+            $formation->removeSession($session);
+            $entityManager->remove($session); 
+        }
         $entityManager->flush();
 
         return $this->redirectToRoute('app_formation');

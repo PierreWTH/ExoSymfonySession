@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello FormateurController!{% endblock %}
+{% block title %} Liste des formateurs {% endblock %}
 
 {% block body %}
 
@@ -19,6 +19,12 @@
     <a href="{{path ('add_formateur')}}"><i class="fa-regular fa-square-plus"></i> Ajouter un formateur</a>
     {% endif %}
 </div>
+
+{% if formateurs|length == 0 %}
+
+<p class="titre-page"> Aucun formateur à afficher. </p>
+
+{% else %}
 
 <div class="table-container">
     <table>
@@ -42,7 +48,7 @@
 
                 {# Ligne avec supprimer et éditer si User est admin #}
                 {% if is_granted('ROLE_ADMIN') %}
-                <td><a href="{{path ('edit_formateur', {id : formateur.id })}}"><i class="fa-solid fa-pen-to-square"></i></a> <a href="{{path ('delete_formateur', {id : formateur.id })}}"><i class="fa-solid fa-trash"></i></a></td>
+                <td><a href="{{path ('edit_formateur', {id : formateur.id })}}"><i class="fa-solid fa-pen-to-square"></i></a> <a href="{{path ('delete_formateur', {id : formateur.id })}}" onclick="alertSupp(event)"><i class="fa-solid fa-trash"></i></a></td>
                 {% endif %}
 
             </tr>
@@ -50,6 +56,6 @@
         </tbody>
     </table>
 </div>
-
+{% endif %}
 {% endif %}
 {% endblock %}

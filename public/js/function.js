@@ -32,9 +32,39 @@ togg1.addEventListener("click", () => {
 
 // Message de prévention avant la suppresion d'un formateur
 
- function alertSupp(e) {
+ function alertSuppFormateur(e) {
 
-  if (!confirm('En effaçant le formateur, vous effacez également toutes les sessions qui lui sont rattachées. Voulez-vous continuer ?')) {
+  if (!confirm('En effaçant le formateur, vous effacez également toutes les sessions qui lui sont rattachées. Continuer ?')) {
+    e.preventDefault();
+    e.stopPropagation();
+
+ return false;
+  }
+  
+   // Si l'utilisateur clique sur "Oui", la fonction ne renvoie rien et l'action par défaut se produira
+  
+}
+
+// Message de prévention avant la suppresion d'une Formation
+
+ function alertSuppFormation(e) {
+
+  if (!confirm('En effaçant la formation, vous effacez également toutes les sessions qui lui sont rattachées. Continuer ?')) {
+    e.preventDefault();
+    e.stopPropagation();
+
+ return false;
+  }
+  
+   // Si l'utilisateur clique sur "Oui", la fonction ne renvoie rien et l'action par défaut se produira
+  
+}
+
+// Message de prévention avant la suppresion d'une Catégorie
+
+ function alertSuppCategorie(e) {
+
+  if (!confirm('En effaçant la catégorie, vous effacez également tous les modules qui lui sont rattachés et les programmes rattachés au modules. Continuer ?')) {
     e.preventDefault();
     e.stopPropagation();
 

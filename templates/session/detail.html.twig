@@ -23,7 +23,10 @@
     <p>  <span class="bold"> Nombre de places : </span> {{session.nbPlace}}</p>
     <p>  <span class="bold"> Nombre de places disponibles : </span> {{session.nbPlace - session.stagiaires|length}}</p>
     {# Boucle pour afficher les programmes qui sont contenus dans session.programme #}
-    <p>  <span class="bold"> Nombre de modules : </span> {{session.programmes|length}} ( {% for programme in session.programmes %} {{programme.modules.nomModule}} {% endfor %})</p>
+    <p>  <span class="bold"> Nombre de modules : </span> {{session.programmes|length}} 
+        {% if session.programmes|length != 0 %}
+        
+    ( {% for programme in session.programmes %} {{programme.modules.nomModule}} {% endfor %}) {% endif %}</p>
 </div>
 
 <div class="session-detail-container">

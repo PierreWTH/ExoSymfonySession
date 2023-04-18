@@ -47,7 +47,7 @@
                 <td data-label ="Inscrits">{{session.stagiaires|length}} / {{session.nbPlace}}</td>
                 {# Si il y a autant de stagiaires inscrits que de place, on affiche session complète, sinon cellule vide#}
                 {% if session.stagiaires|length == session.nbPlace %}
-                <td> Session complète </td>
+                <td data-label ="Statut"> <span class="red-background">Session complète </span></td>
                 {% else %}
                 <td></td>
             </tr>
@@ -89,7 +89,7 @@
                 <td data-label ="Inscrits">{{session.stagiaires|length}} / {{session.nbPlace}}</td>
                 {# Si il y a autant de stagiaires inscrits que de place, on affiche session complète, sinon cellule vide#}
                 {% if session.stagiaires|length == session.nbPlace %}
-                <td> Session complète </td>
+                <td data-label ="Statut"><span class="red-background"> Session complète </span></td>
                 {% else %}
                 <td></td>
             </tr>
@@ -131,7 +131,7 @@
                 <td data-label ="Inscrits">{{session.stagiaires|length}} / {{session.nbPlace}}</td>
                 {# Si il y a autant de stagiaires inscrits que de place, on affiche session complète, sinon cellule vide#}
                 {% if session.stagiaires|length == session.nbPlace %}
-                <td> Session complète </td>
+                <td data-label ="Statut"><span class="red-background">Session complète</span> </td>
                 {% else %}
                 <td></td>
             </tr>

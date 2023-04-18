@@ -81,6 +81,10 @@ class FormateurController extends AbstractController
     {
         $entityManager = $doctrine->getManager();
         $entityManager->remove($formateur);
+        foreach ($formateur->getSessions() as $session) {
+            $formateur->removeSession($session);
+            $entityManager->remove($session); 
+        }
         $entityManager->flush();
 
         return $this->redirectToRoute('app_formateur');

@@ -255,6 +255,14 @@ table{
     color: white;
   }
 
+  .red-background {
+    background-color: #E5989B;
+    color: white;
+    font-weight: 400;
+    padding: 3px;
+    border-radius: 5px;
+  }
+
   @media (max-width: 700px){
 
     #responsive-table thead {
@@ -301,12 +309,20 @@ table{
     margin: 0px;
   }
 
+  .session-programme{
+    width: 100%;
+    max-width: 600px;
+  }
+
   @media (max-width: 1300px){
     .table-session-details{
         width: 450px;
     }
     .table-session-details-non-programmes{
         width: 450px;
+    }
+    .session-programme {
+      width: 450px;
     }
   }
 
@@ -317,6 +333,9 @@ table{
     .table-session-details-non-programmes{
         width: 300px;
 
+    }
+    .session-programme {
+      width: 300px;
     }
   }
 
@@ -376,6 +395,8 @@ table{
     color: white;
     padding: 10px 15px;
   }
+
+  
 
  #togg1 {
     border: 0px;
@@ -464,4 +485,6 @@ table{
     margin: 50px auto;
 
   }
+
+ 
 

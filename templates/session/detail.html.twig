@@ -31,6 +31,11 @@
     <div class="session-stagiaire">
         <h2> Stagiaires inscrits </h2>
 
+        {% if session.stagiaires | length == 0 %}
+            <p class="titre-page"> Aucun stagiaire inscrit. </p>
+        
+        {% else %}
+
         <table class="table-session-details">
             <thead>
                 <tr>
@@ -53,8 +58,14 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% endif %}
 
         <h2> Stagiaires non inscrits </h2>
+
+        {% if nonInscrits| length == 0 %}
+            <p class="titre-page"> Aucun stagiaire non inscrit. </p>
+        
+        {% else %}
 
         <table class="table-session-details">
             <thead>
@@ -77,17 +88,25 @@
                     <td><a href="{{path ('subscribe_stagiaire', {id : stagiaire.id, idsession : session.id })}}"><i class="fa-solid fa-user-plus"></i></a></td>
                     {% endif %}
                     {% else %}
-                        <td> Complet </td>
+                        <td> <span class="red-background">Complet </span> </td>
                 </tr>
                 {% endif %}
                 {% endfor %}
                 
             </tbody>
         </table>
+        {% endif %}
     </div>
 
     <div class="session-programme">
+
         <h2> Programme </h2>
+
+        {% if session.programmes | length == 0 %}
+            <p class="titre-page"> Aucun élément dans le programme. </p>
+        
+        {% else %}
+        
         <div class="modules-programmes">
         <table class="table-session-details" id = "responsive-table">
             <thead>
@@ -133,6 +152,7 @@
             </tbody>
         </table>
         </div>
+        {% endif %}
 
         <div class="modules-non-programmes">
             <h2> Modules non programmés </h2>

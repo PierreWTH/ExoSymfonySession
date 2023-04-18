@@ -95,6 +95,56 @@ class SessionRepository extends ServiceEntityRepository
     
         }
 
+        // Retourne toutes les sessions en cours
+
+        public function findSessionsEnCours()
+        {
+            $em = $this->getEntityManager();
+
+            $qb = $em->createQueryBuilder();
+            $query = $qb->select('s')
+                        ->from('App\Entity\Session', 's')
+                        ->where('s.dateFin > :today')
+                        ->andWhere('s.dateDebut < :today')
+                        ->setParameter('today', new \DateTime())
+                        ->getQuery();
+
+            return $query->getResult();
+        }
+
+        // Retourne toutes les sessions a venir
+
+        public function findSessionsAVenir()
+        {
+            $em = $this->getEntityManager();
+
+            $qb = $em->createQueryBuilder();
+            $query = $qb->select('s')
+                        ->from('App\Entity\Session', 's')
+                        ->where('s.dateFin > :today')
+                        ->andWhere('s.dateDebut > :today')
+                        ->setParameter('today', new \DateTime())
+                        ->getQuery();
+
+            return $query->getResult();
+        }
+
+
+        // Retourne toutes les sessions passees
+
+        public function findSessionsPassees()
+        {
+            $em = $this->getEntityManager();
+
+            $qb = $em->createQueryBuilder();
+            $query = $qb->select('s')
+                        ->from('App\Entity\Session', 's')
+                        ->where('s.dateFin < :today')
+                        ->setParameter('today', new \DateTime())
+                        ->getQuery();
+
+            return $query->getResult();
+        }
 
 
 //    /**

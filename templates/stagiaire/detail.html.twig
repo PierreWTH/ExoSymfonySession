@@ -26,11 +26,15 @@
 <div class="titre-page">
     <h2> SESSIONS DU STAGIAIRE </h2>
 </div>
- 
+
+{% if stagiaire.sessions |length == 0 %}
+
+<p class="titre-page"> Ce stagiaire n'est inscrit a aucunes sessions. </p>
+
+{% else %}
+
 <div class="table-container">
 
-    <h2>Sessions en cours : </h2>
-
     <table id = "responsive-table">
         <thead>
             <tr>
@@ -44,72 +48,10 @@
         </thead>
         <tbody>
             {% for session in sessions %}
-            {# Session en cours : si la date de début est inférieure ou égale a la date du jour et que la date de fin et supérieure ou égale a la date du jour#}
-            {# Et que l'objet stagiaire et dans le tableau d'objet stagiaires de la session #}
-            {% if session.dateDebut|date('d/m/Y') <= 'now'|date('d/m/Y') and session.dateFin|date('d/m/Y') >= 'now'|date('d/m/Y') and stagiaire in session.stagiaires %}
+            {% if stagiaire in session.stagiaires %}
             <tr>
                 <td data-label = "Formation">{{session.formation.nomFormation}}</td>
-                <td data-label = "Session"><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
-                <td data-label = "Début">{{session.dateDebut|date('d/m/Y')}}</td>
-                <td data-label = "Fin">{{session.dateFin |date('d/m/Y')}}</td>
-                <td data-label = "Inscrits">{{session.stagiaires|length}} / {{session.nbPlace}}</td>
-            </tr>
-            {% endif %}
-            {% endfor %}  
-        </tbody>
-    </table>
-
-    <h2>Sessions à venir : </h2>
-
-    <table id = "responsive-table">
-        <thead>
-            <tr>
-                <th>Formation</th>
-                <th>Nom de la session </th>
-                <th>Date de début</th>
-                <th>Date de fin</th>
-                <th>Inscrits</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for session in sessions %}
-            {# Session à venir : si la date de début est supérieure a la date du jour et que la date de fin est supérieure ou égale a la date du jour #}
-            {# Et que l'objet stagiaire et dans le tableau d'objet stagiaires de la session #}
-            {% if session.dateFin|date('d/m/Y') > 'now'|date('d/m/Y') and session.dateDebut|date('d/m/Y') > 'now'|date('d/m/Y') and stagiaire in session.stagiaires%}
-            <tr>
-                <td data-label = "Formation">{{session.formation.nomFormation}}</td>
-                <td data-label = "Session"><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
-                <td data-label = "Début">{{session.dateDebut|date('d/m/Y')}}</td>
-                <td data-label = "Fin">{{session.dateFin |date('d/m/Y')}}</td>
-                <td data-label = "Inscrits">{{session.stagiaires|length}} / {{session.nbPlace}}</td>
-            </tr>
-            {% endif %}
-            {% endfor %}  
-        </tbody>
-    </table>
-
-
-    <h2>Sessions passées: </h2>
-
-    <table id = "responsive-table">
-        <thead>
-            <tr>
-                <th>Formation</th>
-                <th>Nom de la session </th>
-                
-                <th>Date de début</th>
-                <th>Date de fin</th>
-                <th>Inscrits</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for session in sessions %}
-            {# Session passées : si la date de fin est inférieure a la date du jour  #}
-            {# Et que l'objet stagiaire et dans le tableau d'objet stagiaires de la session #}
-            {% if session.dateFin|date('d/m/Y') < 'now'|date('d/m/Y') and stagiaire in session.stagiaires %}
-            <tr>
-                <td data-label = "Formation">{{session.formation.nomFormation}}</td>
-                <td data-label = "Session"><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+                <td data-label = "Session"><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}} <i class="fa-regular fa-rectangle-list"></i></a></td>
                 <td data-label = "Début">{{session.dateDebut|date('d/m/Y')}}</td>
                 <td data-label = "Fin">{{session.dateFin |date('d/m/Y')}}</td>
                 <td data-label = "Inscrits">{{session.stagiaires|length}} / {{session.nbPlace}}</td>
@@ -119,8 +61,9 @@
         </tbody>
     </table>
 </div>
-
 {% endif %}
+{% endif %}
+
 {% endblock %}
 
 

@@ -19,6 +19,12 @@
 <div class="table-container">
     <h2>Sessions en cours : </h2>
 
+    {% if not sessionsEnCours %}
+
+    <p class="titre-page"> Pas de sessions en cours.</p>
+
+    {% else %}
+
     <table id="responsive-table">
         <thead>
             <tr>
@@ -32,12 +38,10 @@
             </tr>
         </thead>
         <tbody>
-            {% for session in sessions %}
-            {# Session en cours : si la date de début est inférieure ou égale a la date du jour et que la date de fin et supérieure ou égale a la date du jour#}
-            {% if session.dateDebut|date('d/m/Y') <= 'now'|date('d/m/Y') and session.dateFin|date('d/m/Y') >= 'now'|date('d/m/Y')%}
+            {% for session in sessionsEnCours %}
             <tr>
                 <td data-label ="Formation">{{session.formation.nomFormation}}</td>
-                <td data-label ="Session"><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+                <td data-label ="Session"><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}} <i class="fa-regular fa-rectangle-list"></i></a></td>
                 <td data-label ="Début">{{session.dateDebut|date('d/m/Y')}}</td>
                 <td data-label ="Fin">{{session.dateFin |date('d/m/Y')}}</td>
                 <td data-label ="Inscrits">{{session.stagiaires|length}} / {{session.nbPlace}}</td>
@@ -48,15 +52,21 @@
                 <td></td>
             </tr>
             {% endif %}
-            {% endif %}
             {% endfor %}  
         </tbody>
     </table>
+    {% endif %}
 
         
 
     <h2>Sessions à venir : </h2>
 
+    {% if not sessionsAVenir %}
+
+    <p class="titre-page"> Pas de sessions à venir. </p>
+
+    {% else %}
+
     <table id="responsive-table">
         <thead>
             <tr>
@@ -70,12 +80,10 @@
             </tr>
         </thead>
         <tbody>
-            {% for session in sessions %}
-            {# Session à venir : si la date de début est supérieure a la date du jour et que la date de fin est supérieure ou égale a la date du jour #}
-            {% if session.dateFin|date('d/m/Y') > 'now'|date('d/m/Y') and session.dateDebut|date('d/m/Y') > 'now'|date('d/m/Y') %}
+            {% for session in sessionsAVenir %}
             <tr>
                 <td data-label ="Formation">{{session.formation.nomFormation}}</td>
-                <td data-label ="Session"><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+                <td data-label ="Session"><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}} <i class="fa-regular fa-rectangle-list"></i></a></td>
                 <td data-label ="Début">{{session.dateDebut|date('d/m/Y')}}</td>
                 <td data-label ="Fin">{{session.dateFin |date('d/m/Y')}}</td>
                 <td data-label ="Inscrits">{{session.stagiaires|length}} / {{session.nbPlace}}</td>
@@ -85,14 +93,21 @@
                 {% else %}
                 <td></td>
             </tr>
-            {% endif %}
+            
             {% endif %}
             {% endfor %}  
         </tbody>
     </table>
+    {% endif %}
 
 
     <h2>Sessions passées: </h2>
+
+    {% if not sessionsPassees %}
+
+    <p class="titre-page"> Pas sessions passées. </p>
+
+    {% else %}
 
     <table id="responsive-table">
         <thead>
@@ -107,12 +122,10 @@
             </tr>
         </thead>
         <tbody>
-            {% for session in sessions %}
-            {% if session.dateFin|date('d/m/Y') < 'now'|date('d/m/Y') %}
-            {# Session passées : si la date de fin est inférieure a la date du jour  #}
+            {% for session in sessionsPassees %}
             <tr>
                 <td data-label ="Formation">{{session.formation.nomFormation}}</td>
-                <td data-label ="Session"><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}}</a></td>
+                <td data-label ="Session"><a href="{{path ('detail_session', {id : session.id })}}">{{session.nomSession}} <i class="fa-regular fa-rectangle-list"></i></a></td>
                 <td data-label ="Début"> {{session.dateDebut|date('d/m/Y')}}</td>
                 <td data-label ="Fin">{{session.dateFin |date('d/m/Y')}}</td>
                 <td data-label ="Inscrits">{{session.stagiaires|length}} / {{session.nbPlace}}</td>
@@ -122,11 +135,13 @@
                 {% else %}
                 <td></td>
             </tr>
-            {% endif %}
+            
             {% endif %}
             {% endfor %}  
         </tbody>
     </table>
 </div>
+
+{% endif %}
 {% endif %}
 {% endblock %}

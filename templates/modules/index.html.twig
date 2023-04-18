@@ -1,10 +1,73 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ModulesController!{% endblock %}
+{% block title %}Liste des modules {% endblock %}
 
 {% block body %}
 
+{# Message si l'utilisateur n'est pas connecté #}
+{% if not app.user %}
 
-<a href="{{path ('add_new_module')}}"><i class="fa-regular fa-square-plus"></i> Ajouter un module</a>
+<p class="titre-page"> Connectez vous pour accéder au contenu. </p>
+
+{% else %}
+
+<div class="titre-page">
+    <h1>Liste des modules </h1>
+
+    {# Ajouter une catégorie si User est admin #}
+
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{path ('add_new_module')}}"><i class="fa-regular fa-square-plus"></i> Ajouter un module</a>
+
+    <div class="add-list-category">
+    <a href="{{path ('add_categorie')}}"><i class="fa-regular fa-square-plus"></i> Ajouter une catégorie</a> {% endif %} <span class="responsive-none"> | </span> <a href="{{path ('app_categorie')}}"><i class="fa-solid fa-list"></i> Voir toutes les catégories </a></div>
+    
+</div>
+
+{% if categories|length == 0 %}
+
+<p class="titre-page"> Aucune catégorie à afficher. </p>
+
+{% else %}
+
+<div class="table-container">
+    <table id = 'responsive-table'>
+        <thead>
+            <tr>
+                <th>Module</th>
+                {# Colonne action si User est admin #}
+                {% if is_granted('ROLE_ADMIN') %}
+                <th>Action</th>
+                {% endif %}
+                <th>Catégorie</th>
+                {# Colonne action si User est admin #}
+                {% if is_granted('ROLE_ADMIN') %}
+                <th>Action</th>
+                {% endif %}
+
+                
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for module in modules %}
+            <tr>
+                <td data-label = 'Module'>{{module.nomModule}}</td>
+                {# Ligne avec supprimer et editer si User est admin #}
+                {% if is_granted('ROLE_ADMIN') %}
+                <td data-label = 'Action'><a href="{{path ('edit_module', {id : module.id })}}"><i class="fa-solid fa-pen-to-square"></i></a> <a href="{{path ('delete_module', {id : module.id })}}" onclick ="alertSuppCategorie(event)"><i class="fa-solid fa-trash"></i></a></td>
+                {% endif %}
+                <td data-label = 'Catégorie'>{{module.categorie.nomCategorie}}</td>
+                {# Ligne avec supprimer et editer si User est admin #}
+                {% if is_granted('ROLE_ADMIN') %}
+                <td data-label = 'Action'><a href="{{path ('edit_categorie', {id : module.categorie.id })}}"><i class="fa-solid fa-pen-to-square"></i></a> <a href="{{path ('delete_categorie', {id : module.categorie.id })}}" onclick ="alertSuppCategorie(event)"><i class="fa-solid fa-trash"></i></a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% endif %}
 
 {% endblock %}

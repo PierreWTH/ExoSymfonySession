@@ -487,5 +487,16 @@ table{
 
   }
 
+  @media (max-width: 500px){
+  .add-list-category{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .responsive-none{
+    display: none;
+  }
+}
  
 

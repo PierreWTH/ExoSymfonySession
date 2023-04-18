@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Modules;
 use App\Entity\Categorie;
 use App\Form\CategorieType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -12,9 +13,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CategorieController extends AbstractController
 {
-    #[Route('/categorie', name: 'app_categorie')]
+    #[Route('/categories', name: 'app_categorie')]
     public function index(ManagerRegistry $doctrine): Response
-    {   
+    {
         $categories = $doctrine->getRepository(Categorie::Class)->findBy([], ["nomCategorie"=>"ASC"]);
         return $this->render('categorie/index.html.twig', [
             'categories' => $categories,
@@ -49,7 +50,7 @@ class CategorieController extends AbstractController
             // On l'execute
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_categorie');
+            return $this->redirectToRoute('app_modules');
         }
 
         // Vue qui vas afficher le formulaire
@@ -78,7 +79,7 @@ class CategorieController extends AbstractController
 
         $entityManager->flush();
 
-    return $this->redirectToRoute('app_categorie');
+    return $this->redirectToRoute('app_modules');
     }
 
 }

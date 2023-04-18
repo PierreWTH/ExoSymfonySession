@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Modules;
 use App\Form\ModuleType;
+use App\Entity\Categorie;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,11 +13,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ModulesController extends AbstractController
 {
-    #[Route('/module', name: 'app_modules')]
-    public function index(): Response
-    {
+    #[Route('/modules', name: 'app_modules')]
+    public function index(ManagerRegistry $doctrine): Response
+    {   
+        $categories = $doctrine->getRepository(Categorie::Class)->findBy([], ["nomCategorie"=>"ASC"]);
+        $modules = $doctrine->getRepository(Modules::Class)->findBy([], ["nomModule"=>"ASC"]);
         return $this->render('modules/index.html.twig', [
-            'controller_name' => 'ModulesController',
+            'categories' => $categories,
+            'modules' => $modules
         ]);
     }
 
@@ -48,15 +52,30 @@ class ModulesController extends AbstractController
             // On l'execute
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_module');
+            return $this->redirectToRoute('app_modules');
         }
-
+        
         // Vue qui vas afficher le formulaire
         return $this->render('modules/add.html.twig', [
             //generer le formulaire visuellement quand on utilise formAddmodule
             'formAddModule' => $form->createView()
             
         ]);
+    }
+
+    // Supprimer un module
+    #[Route('admin/module/{id}/delete', name: 'delete_module')]
+    public function delete(ManagerRegistry $doctrine, Modules $module): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($module);
+        foreach ($module->getProgrammes() as $programme) {
+            $module->removeProgramme($programme);
+            $entityManager->remove($programme); 
+        }
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_modules');
     }
     
 }

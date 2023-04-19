@@ -41,7 +41,7 @@ Ce projet Symfony à pour but de permettre à un organisme de formation de gére
         <ol>Modifier/ajouter/supprimer </ol><br>
         <ol>Modifier/ajouter/supprimer </ol><br>
         <ol>Détail des infos de l'utilisateur </ol><br>
-        <ol>Panneau d'admin pour ajouter éléments. 
+        <ol>Panneau d'admin pour ajouter éléments. </ol><br>
         <ol>Admin à accès aux boutons pour supprimer/modifier/ajouter.</ol><br>
         <ol>Entiérement responsive, adapté aux smartphone, tablette... </ol><br>
     </td>

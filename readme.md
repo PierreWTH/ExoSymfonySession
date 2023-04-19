@@ -31,19 +31,19 @@ Ce projet Symfony à pour but de permettre à un organisme de formation de gére
         <ol>Responsive design </ol><br>
     </td>
     <td>
-        Vérification envoyé par mail <br>
-        Modifier/ajouter/supprimer<br>
-        Modifier/ajouter/supprimer. Avertissement si session complète. <br>
-        Inscrire/désinscrire stagiaire, programmer/déprogrammer module. <br>
-        Modifier/ajouter/supprimer<br>
-        Ajouter + affichage infos persos et sessions suivies. <br>
-        Ajouter + affichage des infos persos et sessions ou le formateur est référent.<br> 
-        Modifier/ajouter/supprimer <br>
-        Modifier/ajouter/supprimer <br>
-        Détail des infos de l'utilisateur <br>
-        Panneau d'admin pour ajouter éléments. 
-        Admin à accès aux boutons pour supprimer/modifier/ajouter.<br> 
-        Entiérement responsive, adapté aux smartphone, tablette... <br>
+        <ol>Vérification envoyé par mail </ol><br>
+        <ol>Modifier/ajouter/supprimer</ol><br>
+        <ol>Modifier/ajouter/supprimer. Avertissement si session complète. </ol><br>
+        <ol>Inscrire/désinscrire stagiaire, programmer/déprogrammer module. </ol><br>
+        <ol>Modifier/ajouter/supprimer</ol><br>
+        <ol>Ajouter + affichage infos persos et sessions suivies.</ol><br>
+        <ol>Ajouter + affichage des infos persos et sessions ou le formateur est référent.</ol><br>
+        <ol>Modifier/ajouter/supprimer </ol><br>
+        <ol>Modifier/ajouter/supprimer </ol><br>
+        <ol>Détail des infos de l'utilisateur </ol><br>
+        <ol>Panneau d'admin pour ajouter éléments. 
+        <ol>Admin à accès aux boutons pour supprimer/modifier/ajouter.</ol><br>
+        <ol>Entiérement responsive, adapté aux smartphone, tablette... </ol><br>
     </td>
   </tr>
 </tbody>

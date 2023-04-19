@@ -380,6 +380,8 @@ table{
   }
 
   .details-contenu{
+    display: flex;
+    flex-direction: column;
     background-color: #f8f8f8;
     width: 100%;
     max-width: 1290px;

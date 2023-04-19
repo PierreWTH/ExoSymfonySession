@@ -33,11 +33,11 @@ Ce projet Symfony à pour but de permettre à un organisme de formation de gére
     <td>
         <ol>Vérification envoyé par mail </ol><br>
         <ol>Modifier/ajouter/supprimer</ol><br>
-        <ol>Modifier/ajouter/supprimer. Avertissement si session complète. </ol><br>
-        <ol>Inscrire/désinscrire stagiaire, programmer/déprogrammer module. </ol><br>
+        <ol>Modifier/ajouter/supprimer. Alerte si session complète. </ol><br>
+        <ol>Inscrire/désinscrire, programmer/déprogrammer module. </ol><br>
         <ol>Modifier/ajouter/supprimer</ol><br>
-        <ol>Ajouter + affichage infos persos et sessions suivies.</ol><br>
-        <ol>Ajouter + affichage des infos persos et sessions ou le formateur est référent.</ol><br>
+        <ol>Ajouter + infos persos et sessions suivies.</ol><br>
+        <ol>Ajouter + infos infos persos et sessions animées.</ol><br>
         <ol>Modifier/ajouter/supprimer </ol><br>
         <ol>Modifier/ajouter/supprimer </ol><br>
         <ol>Détail des infos de l'utilisateur </ol><br>

@@ -16,18 +16,19 @@ Ce projet Symfony à pour but de permettre à un organisme de formation de gére
 <tbody>
   <tr>
     <td>
-        Inscription / Connexion <br>
-        Liste des formations <br>
-        Liste des sessions en cours, passées et à venir <br>
-        Détail d'une session<br>
-        Liste des stagiaires <br>
-        Detail d'un stagiaire <br>
-        Detail d'un formateur<br> 
-        Liste des modules <br>
-        Liste des catégories <br>
-        Voir le profil <br>
-        Système d'administration <br>
-        Responsive design <br>
+        <ol>Inscription / Connexion </ol><br>
+        <ol>Liste des formations </ol><br>
+        <ol>Liste des sessions en cours, passées et à venir</ol> <br>
+        <ol>Détail d'une session</ol><br>
+        <ol>Liste des stagiaires </ol><br>
+        <ol>Detail d'un stagiaire </ol><br>
+        <ol>Detail d'un formateur</ol><br> 
+        <ol>Liste des modules</ol> <br>
+        <ol>Liste des catégories </ol><br>
+        <ol>Voir le profil </ol><br>
+        <ol>Panneau d'administration </ol><br>
+        <ol>Système d'administration </ol><br>
+        <ol>Responsive design </ol><br>
     </td>
     <td>
         Vérification envoyé par mail <br>
@@ -40,7 +41,8 @@ Ce projet Symfony à pour but de permettre à un organisme de formation de gére
         Modifier/ajouter/supprimer <br>
         Modifier/ajouter/supprimer <br>
         Détail des infos de l'utilisateur <br>
-        Panneau d'admin pour ajouter éléments. Admin a accès aux boutons pour supprimer/modifier/ajouter.<br> 
+        Panneau d'admin pour ajouter éléments. 
+        Admin à accès aux boutons pour supprimer/modifier/ajouter.<br> 
         Entiérement responsive, adapté aux smartphone, tablette... <br>
     </td>
   </tr>

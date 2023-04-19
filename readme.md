@@ -1,6 +1,6 @@
 # Session 
 
-<b>Projet réalisé dans le cadre de la formation développeur web et web mobile chez elan formation </b>
+<b>Projet réalisé dans le cadre de la formation développeur web et web mobile chez Elan Formation </b>
 
 ##  Description du projet
 
@@ -16,32 +16,32 @@ Ce projet Symfony à pour but de permettre à un organisme de formation de gére
 <tbody>
   <tr>
     <td>
-        <li>Inscription / Connexion </li>
-        <li>Liste des formations </li>
-        <li> Liste des sessions en cours, passées et à venir </li>
-        <li>Détail d'une session</li>
-        <li>Liste des stagiaires </li>
-        <li> Detail d'un stagiaire </li>
-        <li> Detail d'un formateur </li>
-        <li>Liste des modules </li>
-        <li>Liste des catégories </li>
-        <li> Voir le profil </li>
-        <li> Système d'administration </li>
-        <li> Responsive design </li>
+        Inscription / Connexion <br>
+        Liste des formations <br>
+        Liste des sessions en cours, passées et à venir <br>
+        Détail d'une session<br>
+        Liste des stagiaires <br>
+        Detail d'un stagiaire <br>
+        Detail d'un formateur<br> 
+        Liste des modules <br>
+        Liste des catégories <br>
+        Voir le profil <br>
+        Système d'administration <br>
+        Responsive design <br>
     </td>
     <td>
-        <li> Lien de vérification envoyé par mail </li>
-        <li>Possibilité de modifier/ajouter/supprimer</li>
-        <li>Possibilité de modifier/ajouter/supprimer. Si la session est complète, c'est affiché dans statut. </li>
-        <li>Possibilité d'inscrire/désinscrire un stagiaire, programmer/déprogrammer un module. </li>
-        <li>Possibilité de modifier/ajouter/supprimer</li>
-        <li>Possibilité d'ajouter. Affichage des informations personelles et des sessions suivies. </li>
-        <li>Possibilité d'ajouter. Affichage des informations personelles et des sessions dont le formateur est référent. </li>
-        <li>Possibilité de modifier/ajouter/supprimer </li>
-        <li>Possibilité de modifier/ajouter/supprimer </li>
-        <li> Détail des information de l'utilisateur </li>
-        <li> L'admin a accès a un panneau d'administration qui contient des raccourci pour ajouter chacun des éléments. Sur chaque page, il est le seul a avoir accès aux boutons pour supprimer/modifier/ajouter un élément. </li>
-        <li> L'application est entiérement responsive et peut être utilisée sur smartphone, tablette... </li>
+         Lien de vérification envoyé par mail <br>
+        Possibilité de modifier/ajouter/supprimer<br>
+        Possibilité de modifier/ajouter/supprimer. Si la session est complète, c'est affiché dans statut. <br>
+        Possibilité d'inscrire/désinscrire un stagiaire, programmer/déprogrammer un module. <br>
+        Possibilité de modifier/ajouter/supprimer<br>
+        Possibilité d'ajouter. Affichage des informations personelles et des sessions suivies. <br>
+        Possibilité d'ajouter. Affichage des informations personelles et des sessions dont le formateur est référent.<br> 
+        Possibilité de modifier/ajouter/supprimer <br>
+        Possibilité de modifier/ajouter/supprimer <br>
+         Détail des information de l'utilisateur <br>
+         L'admin a accès a un panneau d'administration qui contient des raccourci pour ajouter chacun des éléments. Sur chaque page, il est le seul a avoir accès aux boutons pour supprimer/modifier/ajouter un élément.<br> 
+         L'application est entiérement responsive et peut être utilisée sur smartphone, tablette... <br>
     </td>
   </tr>
 </tbody>

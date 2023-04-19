@@ -18,7 +18,7 @@ Ce projet Symfony à pour but de permettre à un organisme de formation de gére
     <td>
         <ol>Inscription / Connexion </ol><br>
         <ol>Liste des formations </ol><br>
-        <ol>Liste des sessions en cours, passées et à venir</ol> <br>
+        <ol>Liste des sessions triées. </ol> <br>
         <ol>Détail d'une session</ol><br>
         <ol>Liste des stagiaires </ol><br>
         <ol>Detail d'un stagiaire </ol><br>

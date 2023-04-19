@@ -55,7 +55,7 @@ Ce projet Symfony à pour but de permettre à un organisme de formation de gére
 
 <b> Desktop <b>
 
-![Session-Desktop](https://imgur.com/HMx50NJ)
+![Session-Desktop](https://github.com/PierreWTH/ExoSymfonySession/blob/main/public/img/session.gif)
 
 <b> Mobile <b>
 

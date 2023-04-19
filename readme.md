@@ -4,7 +4,7 @@ Projet réalisé dans le cadre de la formation Développeur Web et Web Mobile ch
 
 ##  Description du projet 🚧
 
-Ce projet Symfony à pour but de permettre à un organisme de formation de gérer des sessions de formation. Le contenu n'est accessibles qu'au personnes qui sont connectées sur l'application. (On peut imaginer créer un compte seulement pour le personnel administratif et les formateurs.)
+Ce projet Symfony à pour but de permettre à un organisme de formation de gérer des sessions de formation. Le contenu n'est accessible qu'aux personnes qui sont connectées sur l'application. (Par exemple, le personnel administratif et les formateurs. )
 
 ##  Vue d'ensemble 👁️
 
@@ -33,19 +33,19 @@ Ce projet Symfony à pour but de permettre à un organisme de formation de gére
         <ol>Responsive design </ol><br>
     </td>
     <td>
-        <ol>Vérification envoyé par mail </ol><br>
+        <ol>Vérification envoyée par mail </ol><br>
         <ol>Modifier/ajouter/supprimer</ol><br>
         <ol>Modifier/ajouter/supprimer. Alerte si session complète. </ol><br>
-        <ol>Inscrire/désinscrire, programmer/déprogrammer module. </ol><br>
+        <ol>Inscrire/désinscrire, programmer/déprogrammer module </ol><br>
         <ol>Modifier/ajouter/supprimer</ol><br>
-        <ol>Ajouter + infos persos et sessions suivies.</ol><br>
-        <ol>Ajouter + infos infos persos et sessions animées.</ol><br>
+        <ol>Ajouter + infos persos et sessions suivies</ol><br>
+        <ol>Ajouter + infos infos persos et sessions animées</ol><br>
         <ol>Modifier/ajouter/supprimer </ol><br>
         <ol>Modifier/ajouter/supprimer </ol><br>
         <ol>Détail des infos de l'utilisateur </ol><br>
         <ol>Panneau d'admin pour ajouter éléments. </ol><br>
         <ol>Admin à accès aux boutons pour supprimer/modifier/ajouter.</ol><br>
-        <ol>Entiérement responsive, adapté aux smartphone, tablette... </ol><br>
+        <ol>Entiérement responsive, adapté aux smartphones, tablettes... </ol><br>
     </td>
   </tr>
 </tbody>

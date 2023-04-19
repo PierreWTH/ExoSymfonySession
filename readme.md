@@ -30,18 +30,18 @@ Ce projet Symfony à pour but de permettre à un organisme de formation de gére
         Responsive design <br>
     </td>
     <td>
-         Lien de vérification envoyé par mail <br>
-        Possibilité de modifier/ajouter/supprimer<br>
-        Possibilité de modifier/ajouter/supprimer. Si la session est complète, c'est affiché dans statut. <br>
-        Possibilité d'inscrire/désinscrire un stagiaire, programmer/déprogrammer un module. <br>
-        Possibilité de modifier/ajouter/supprimer<br>
-        Possibilité d'ajouter. Affichage des informations personelles et des sessions suivies. <br>
-        Possibilité d'ajouter. Affichage des informations personelles et des sessions dont le formateur est référent.<br> 
-        Possibilité de modifier/ajouter/supprimer <br>
-        Possibilité de modifier/ajouter/supprimer <br>
-         Détail des information de l'utilisateur <br>
-         L'admin a accès a un panneau d'administration qui contient des raccourci pour ajouter chacun des éléments. Sur chaque page, il est le seul a avoir accès aux boutons pour supprimer/modifier/ajouter un élément.<br> 
-         L'application est entiérement responsive et peut être utilisée sur smartphone, tablette... <br>
+        Vérification envoyé par mail <br>
+        Modifier/ajouter/supprimer<br>
+        Modifier/ajouter/supprimer. Avertissement si session complète. <br>
+        Inscrire/désinscrire stagiaire, programmer/déprogrammer module. <br>
+        Modifier/ajouter/supprimer<br>
+        Ajouter + affichage infos persos et sessions suivies. <br>
+        Ajouter + affichage des infos persos et sessions ou le formateur est référent.<br> 
+        Modifier/ajouter/supprimer <br>
+        Modifier/ajouter/supprimer <br>
+        Détail des infos de l'utilisateur <br>
+        Panneau d'admin pour ajouter éléments. Admin a accès aux boutons pour supprimer/modifier/ajouter.<br> 
+        Entiérement responsive, adapté aux smartphone, tablette... <br>
     </td>
   </tr>
 </tbody>

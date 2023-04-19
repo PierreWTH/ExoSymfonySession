@@ -1,16 +1,18 @@
-# Session 
+# Session 👨‍🎓
 
 <b>Projet réalisé dans le cadre de la formation développeur web et web mobile chez Elan Formation </b>
 
-##  Description du projet
+##  Description du projet 🚧
 
 Ce projet Symfony à pour but de permettre à un organisme de formation de gérer des sessions de formation. Le contenu n'est accessibles qu'au personnes qui sont connectées sur l'application. (On peut imaginer créer un compte seulement pour le personnel administratif et les formateurs.)
+
+##  Vue d'ensemble 👁️
 
 <table>
 <thead>
   <tr>
-      <th> Fonctionnalités </th>
-      <th> Détails </th>
+      <th> Fonctionnalités 🤖</th>
+      <th> Détails 🗒️ </th>
    </tr> 
 </thead>
 <tbody>
@@ -53,4 +55,9 @@ Ce projet Symfony à pour but de permettre à un organisme de formation de gére
 
 ## Démonstration
 
-## Technologies utilisées
+## Technologies utilisées ⚡
+
+- Symfony 6
+- PHP 8.2
+- CSS 3
+- JavaScript

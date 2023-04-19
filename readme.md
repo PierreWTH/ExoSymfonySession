@@ -1,6 +1,6 @@
 # Session 👨‍🎓
 
-<b>Projet réalisé dans le cadre de la formation développeur web et web mobile chez Elan Formation </b>
+Projet réalisé dans le cadre de la formation Développeur Web et Web Mobile chez Elan Formation.
 
 ##  Description du projet 🚧
 
@@ -51,9 +51,13 @@ Ce projet Symfony à pour but de permettre à un organisme de formation de gére
 </tbody>
 </table>
 
-
-
 ## Démonstration
+
+<b> Desktop <b>
+
+![Session-Desktop](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmVjZDU2N2FkMDU1MWVmZDEzMGQ3OTA2MTgwN2IxOGJjN2I1Y2NhMiZjdD1n/6KN9r0ZxVrtUxWnqPb/giphy.gif)
+
+<b> Mobile <b>
 
 ## Technologies utilisées ⚡
 

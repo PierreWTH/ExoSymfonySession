@@ -55,8 +55,7 @@ Ce projet Symfony à pour but de permettre à un organisme de formation de gére
 
 <b> Desktop <b>
 
-<img src="https://media.giphy.com/media/YOUR-GIF-ID/giphy.gif" width="500" height="300"/>
-
+![Session-Desktop](https://imgur.com/HMx50NJ)
 
 <b> Mobile <b>
 

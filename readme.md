@@ -59,6 +59,8 @@ Ce projet Symfony à pour but de permettre à un organisme de formation de gére
 
 <b> Mobile <b>
 
+![Session-Mobile](https://github.com/PierreWTH/ExoSymfonySession/blob/main/public/img/session-mobile.gif)
+
 ## Technologies utilisées ⚡
 
 - Symfony 6

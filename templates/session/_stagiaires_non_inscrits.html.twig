@@ -1,0 +1,36 @@
+<h2> Stagiaires non inscrits </h2>
+
+{% if nonInscrits| length == 0 %}
+    <p class="titre-page"> Aucun stagiaire non inscrit. </p>
+
+{% else %}
+
+<table class="table-session-details">
+    <thead>
+        <tr>
+            <th>Stagiaires</th>
+            {# Colonne inscrire si User est admin #}
+            {% if is_granted('ROLE_ADMIN') %}
+            <th>Inscrire</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for stagiaire in nonInscrits %}
+        <tr>
+            <td><a href="{{path ('detail_stagiaire', {id : stagiaire.id })}}">{{stagiaire.prenom}} {{stagiaire.nom}}</a></td>
+            {# Si le nombre de place est supérieur au nombre de stagiaires inscrits, bouton inscrire (si user admin) sinon on affiche complet #}
+            {% if session.nbPlace > session.stagiaires|length%}
+            {# Bouton inscrire si User est admin #}
+            {% if is_granted('ROLE_ADMIN') %}
+            <td><a href="{{path ('subscribe_stagiaire', {id : stagiaire.id, idsession : session.id })}}"><i class="fa-solid fa-user-plus"></i></a></td>
+            {% endif %}
+            {% else %}
+                <td> <span class="red-background">Complet </span> </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        
+    </tbody>
+</table>
+{% endif %}

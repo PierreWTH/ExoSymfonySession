@@ -89,4 +89,7 @@ class FormateurController extends AbstractController
 
         return $this->redirectToRoute('app_formateur');
     }
+
+
+    // RAJOUTER UN TO STRING AVEC NOM PRENOM 
 }

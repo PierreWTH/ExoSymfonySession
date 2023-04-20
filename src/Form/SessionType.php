@@ -21,6 +21,7 @@ class SessionType extends AbstractType
         $builder
             ->add('nomSession', TextType::class)
             ->add('nbPlace',  IntegerType::class)
+            // Ne pas autoriser a aller a -0
             ->add('dateDebut', DateType::class, [
                 'widget' => 'single_text'
             ])

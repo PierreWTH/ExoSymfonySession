@@ -1,0 +1,47 @@
+<nav>
+    {# DESKTOP NAVBAR - Si l'utilisateur est connecté #}
+    {% if app.user %}
+
+        {# Logo #}
+        <div>
+            <a href="{{ path('app_home') }}" class="nav-logo">SESSION </a>
+        </div>
+
+        {# Liens de navigation #}
+        <div>
+            <a href="{{ path('app_formation') }}">FORMATION</a>
+            <a href="{{ path('app_session') }}">SESSION</a>
+            <a href="{{ path('app_stagiaire') }}">STAGIAIRES</a>
+            <a href="{{ path('app_formateur') }}">FORMATEURS</a>
+            <a href="{{ path('app_modules') }}">MODULES</a>
+        </div>
+
+        {# Liens liés a l'utilisateur #}
+        <div>
+            <a href="{{ path('app_profil') }}" class="nav-item-background"><i class="fa-solid fa-user"></i> Mon profil</a>
+            {# Si user est admin, affichage du bouton pour aller au panneau de controle #}
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('admin_pannel') }}" class="nav-item-background"><i class="fa-solid fa-hammer"></i> Administration</a>
+            {% endif %}
+            <a href="{{ path('app_logout') }}" class="nav-item-background"><i class="fa-solid fa-right-from-bracket"></i> Se deconnecter</a>
+        </div>
+
+    {# DESKTOP NAVBAR - Si l'utilisateur n'est pas connecté #}
+    {% else %}
+    
+        <div class="not-connected-navbar">
+            {# Logo #}
+            <div>
+                <a href="{{ path('app_home') }}" class="nav-logo">SESSION </a>
+            </div>
+
+            {# Liens login / register #}
+            <div>
+                <a href="{{ path('app_login') }}" class="nav-item-background"><i class="fa-solid fa-right-to-bracket"></i> Se connecter</a>
+                <a href="{{ path('app_register') }}" class="nav-item-background"> <i class="fa-regular fa-address-card"></i> S'inscrire</a>
+            </div>
+        </div>
+
+    {% endif %}
+
+</nav>

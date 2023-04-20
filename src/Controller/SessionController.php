@@ -19,7 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SessionController extends AbstractController
 {
     // Liste des sessions
-
+    
     #[Route('/session', name: 'app_session')]
     public function index(ManagerRegistry $doctrine, SessionRepository $sr): Response
     {   
@@ -79,103 +79,162 @@ class SessionController extends AbstractController
 
     // Afficher les details d'une session
     #[Route('session/{id}', name: 'detail_session')]
-    public function detail(Session $session, SessionRepository $sr, ManagerRegistry $doctrine, $id ): Response
+    public function detail(Session $session = null , SessionRepository $sr, ManagerRegistry $doctrine, $id ): Response
+
     {   
-        // Utilisation des fonctions des repository
-        $nonInscrits = $sr->findNonInscrits($id);
-        $nonProgrammes = $sr->findNonProgrammes($id);
-
-        return $this->render('session/detail.html.twig', [
-            'session' => $session,
-            'nonInscrits' => $nonInscrits,
-            'nonProgrammes' => $nonProgrammes
-        ]);
+        if ($session){
+            // Utilisation des fonctions des repository
+            $nonInscrits = $sr->findNonInscrits($id);
+            $nonProgrammes = $sr->findNonProgrammes($id);
+    
+            return $this->render('session/detail.html.twig', [
+                'session' => $session,
+                'nonInscrits' => $nonInscrits,
+                'nonProgrammes' => $nonProgrammes
+            ]);
+        }
+        else{
+            return $this->redirectToRoute('app_session');
+        }
     }
-
 
      //Désinscrire un stagiaire d'une session
      #[Route('admin/session/{idsession}/{id}/unsubscribe', name: 'unsubscribe_stagiaire')]
-     public function unsubscribe(ManagerRegistry $doctrine, Stagiaire $stagiaire, $idsession): Response
+     public function unsubscribe(ManagerRegistry $doctrine, Stagiaire $stagiaire = null, $idsession): Response
      {  
+        
+        if ($stagiaire){
+
         $entityManager = $doctrine->getManager();
         $session = $entityManager->getRepository(Session::class)->find($idsession);
-        $session->removeStagiaire($stagiaire);
-        $entityManager->flush();
-        
-        return $this->redirectToRoute('detail_session',['id' => $idsession]);
+
+            if ($session)
+            {
+            $session->removeStagiaire($stagiaire);
+            $entityManager->flush();
+            
+            return $this->redirectToRoute('detail_session',['id' => $idsession]);
+            }
+            else {
+                return $this->redirectToRoute('app_session');
+            }
+        }
+        else{
+            return $this->redirectToRoute('app_session');
+        }
      }
 
      //Inscrire un stagiaire a une session
      #[Route('admin/session/{idsession}/{id}/subscribe', name: 'subscribe_stagiaire')]
-     public function subscribe(ManagerRegistry $doctrine, Stagiaire $stagiaire, $idsession): Response
+     public function subscribe(ManagerRegistry $doctrine, Stagiaire $stagiaire = null , $idsession): Response
      {  
-        $entityManager = $doctrine->getManager();
-        $session = $entityManager->getRepository(Session::class)->find($idsession);
-        $session->addStagiaire($stagiaire);
-        $entityManager->flush();
-        
-        return $this->redirectToRoute('detail_session',['id' => $idsession]);
-     }
+            $entityManager = $doctrine->getManager();
+            $session = $entityManager->getRepository(Session::class)->find($idsession);
+
+            if ($stagiaire && $session->getNbPlace() > count($session->getStagiaires()))
+            {
+            $session->addStagiaire($stagiaire);
+            $entityManager->flush();
+            
+            return $this->redirectToRoute('detail_session',['id' => $idsession]);
+            }
+            else
+            {
+                return $this->redirectToRoute('app_session');
+            }
+
+    }
 
     //Enlever un module d'une session
     #[Route('admin/session/{idsession}/{id}/removeModule', name: 'remove_module')]
-    public function removeModule(ManagerRegistry $doctrine, Programme $programme, $idsession): Response
+    public function removeModule(ManagerRegistry $doctrine, Programme $programme = null, $idsession): Response
     {  
-       $entityManager = $doctrine->getManager();
-       $session = $entityManager->getRepository(Session::class)->findOneBy(['id' => $idsession]);
-       $session->removeProgramme($programme);
-       $entityManager->flush();
-       
-       return $this->redirectToRoute('detail_session',['id' => $idsession]);
+        if ($programme)
+        {
+            $entityManager = $doctrine->getManager();
+            $session = $entityManager->getRepository(Session::class)->findOneBy(['id' => $idsession]);
+
+            if ($session)
+            {
+            $session->removeProgramme($programme);
+            $entityManager->flush();
+            
+            return $this->redirectToRoute('detail_session',['id' => $idsession]);
+            }
+            else 
+            {
+                return $this->redirectToRoute('app_session');
+            }
+        }
+        else{
+            return $this->redirectToRoute('app_session');
+        }
     }
 
     //Ajouter un module a la session
     #[Route('admin/session/{idsession}/{id}/addModule', name: 'add_module')]
-    public function addModule(ManagerRegistry $doctrine, Modules $module, $idsession, $id): Response
+    public function addModule(ManagerRegistry $doctrine, Modules $module = null, $idsession, $id): Response
     {  
        $entityManager = $doctrine->getManager();
 
-       if (isset($_POST['submit']))
-        {   
-            $duree = filter_input(INPUT_POST, "duree", FILTER_VALIDATE_INT);
+            if ($module)
+            {
 
-            if($duree){
+                if (isset($_POST['submit']))
+                {   
+                    $duree = filter_input(INPUT_POST, "duree", FILTER_VALIDATE_INT);
 
-       //Récupération de la session correspondant a l'id
-       $session = $entityManager->getRepository(Session::class)->findOneBy(['id' => $idsession]);
+                    //Récupération de la session correspondant a l'id
+                    $session = $entityManager->getRepository(Session::class)->findOneBy(['id' => $idsession]);
 
-       //Récupération du module correspondant a l'id
-       $module = $entityManager->getRepository(Modules::class)->findOneBy(['id' => $id]);
+                    if($duree && $session)
+                    {
+                        //Récupération du module correspondant a l'id
+                        $module = $entityManager->getRepository(Modules::class)->findOneBy(['id' => $id]);
 
-       // Création du nouvel objet programme
-       $programme = new Programme();
+                        // Création du nouvel objet programme
+                        $programme = new Programme();
 
-       //Définitions des champs grâce aux setters
-       $programme->setModules($module);
-       $programme->setDuree($duree);
-       $programme->setSessions($session);
+                        //Définitions des champs grâce aux setters
+                        $programme->setModules($module);
+                        $programme->setDuree($duree);
+                        $programme->setSessions($session);
 
-       // Ajout du programme
-       $session->addProgramme($programme);
+                        // Ajout du programme
+                        $session->addProgramme($programme);
 
-       // Préparation et ajout dans la BDD
-       $entityManager->persist($programme);
-       $entityManager->flush();
-    }
-    }
+                        // Préparation et ajout dans la BDD
+                        $entityManager->persist($programme);
+                        $entityManager->flush();
+
+                        return $this->redirectToRoute('detail_session',['id' => $idsession]);
+                    }
+                    else{
+                        return $this->redirectToRoute('app_session');
+                    }
+                }
+            }
+            else {
+                return $this->redirectToRoute('app_session');
+            }
        
-       return $this->redirectToRoute('detail_session',['id' => $idsession]);
     }
 
     // Supprimer une session
     #[Route('admin/session/{id}/delete', name: 'delete_session')]
-    public function delete(ManagerRegistry $doctrine, Session $session): Response
+    public function delete(ManagerRegistry $doctrine, Session $session = null): Response
     {
+        if ($session){
+
         $entityManager = $doctrine->getManager();
         $entityManager->remove($session);
         $entityManager->flush();
 
         return $this->redirectToRoute('app_session');
+        }
+        else{
+            return $this->redirectToRoute('app_session');
+        }
     }
    
 }

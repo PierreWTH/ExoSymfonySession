@@ -63,23 +63,32 @@ class CategorieController extends AbstractController
 
     // Supprimer une categorie
     #[Route('admin/categorie/{id}/delete', name: 'delete_categorie')]
-    public function delete(ManagerRegistry $doctrine, Categorie $categorie): Response
-    {
+    public function delete(ManagerRegistry $doctrine, Categorie $categorie = null): Response
+    {   
+        if ($categorie)
+        {
+
+        
         $entityManager = $doctrine->getManager();
         $entityManager->remove($categorie);
-        foreach ($categorie->getModules() as $module) {
+        foreach ($categorie->getModules() as $module) 
+        {
             $categorie->removeModule($module);
             $entityManager->remove($module); 
 
-            foreach ($module->getProgrammes() as $programme) {
+            foreach ($module->getProgrammes() as $programme) 
+            {
                 $module->removeProgramme($programme);
                 $entityManager->remove($programme); 
             }
         }
 
         $entityManager->flush();
+        
+        }
 
     return $this->redirectToRoute('app_modules');
+    
     }
 
 }

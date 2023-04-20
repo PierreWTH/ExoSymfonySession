@@ -65,15 +65,21 @@ class FormationController extends AbstractController
 
      // Supprimer une formation
     #[Route('admin/formation/{id}/delete', name: 'delete_formation')]
-    public function delete(ManagerRegistry $doctrine, Formation $formation): Response
-    {
-        $entityManager = $doctrine->getManager();
-        $entityManager->remove($formation);
-        foreach ($formation->getSessions() as $session) {
-            $formation->removeSession($session);
-            $entityManager->remove($session); 
+    public function delete(ManagerRegistry $doctrine, Formation $formation = null): Response
+    {   
+        if ($formation)
+        {
+            $entityManager = $doctrine->getManager();
+            $entityManager->remove($formation);
+
+            foreach ($formation->getSessions() as $session) 
+            {
+                $formation->removeSession($session);
+                $entityManager->remove($session); 
+            }
+            $entityManager->flush();
+
         }
-        $entityManager->flush();
 
         return $this->redirectToRoute('app_formation');
     }

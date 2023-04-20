@@ -65,16 +65,21 @@ class ModulesController extends AbstractController
 
     // Supprimer un module
     #[Route('admin/module/{id}/delete', name: 'delete_module')]
-    public function delete(ManagerRegistry $doctrine, Modules $module): Response
+    public function delete(ManagerRegistry $doctrine, Modules $module = null): Response
     {
-        $entityManager = $doctrine->getManager();
-        $entityManager->remove($module);
-        foreach ($module->getProgrammes() as $programme) {
-            $module->removeProgramme($programme);
-            $entityManager->remove($programme); 
-        }
-        $entityManager->flush();
+        if ($module)
+        {
+            $entityManager = $doctrine->getManager();
+            $entityManager->remove($module);
+            foreach ($module->getProgrammes() as $programme) 
+            {
+                $module->removeProgramme($programme);
+                $entityManager->remove($programme); 
+            }
+            $entityManager->flush();
 
+        }
+        
         return $this->redirectToRoute('app_modules');
     }
     

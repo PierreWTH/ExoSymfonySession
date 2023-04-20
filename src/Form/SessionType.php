@@ -33,8 +33,7 @@ class SessionType extends AbstractType
                 'choice_label' => 'nomFormation',
             ])
             ->add('formateur', EntityType::class, [
-                'class' => Formateur::class,
-                'choice_label' => 'nom',
+                'class' => Formateur::class
             ])
             ->add('ajouter', SubmitType::class)
 

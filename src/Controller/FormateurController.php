@@ -64,32 +64,41 @@ class FormateurController extends AbstractController
 
     // Afficher les details d'un formateur
     #[Route('/formateur/{id}', name: 'detail_formateur')]
-    public function detail(ManagerRegistry $doctrine, Formateur $formateur): Response
+    public function detail(ManagerRegistry $doctrine, Formateur $formateur = null): Response
     {   
+        if ($formateur)
+        {
         $entityManager = $doctrine->getManager();
         $sessions = $entityManager->getRepository(Session::class)->findAll();
         return $this->render('formateur/detail.html.twig', [
             'formateur' => $formateur,
             'sessions' => $sessions
         ]);
+        }
+        else
+        {
+            return $this->redirectToRoute('app_formateur');
+        }
     }
 
 
     // Supprimer un formateur
     #[Route('admin/formateur/{id}/delete', name: 'delete_formateur')]
-    public function delete(ManagerRegistry $doctrine, Formateur $formateur): Response
-    {
-        $entityManager = $doctrine->getManager();
-        $entityManager->remove($formateur);
-        foreach ($formateur->getSessions() as $session) {
-            $formateur->removeSession($session);
-            $entityManager->remove($session); 
-        }
-        $entityManager->flush();
+    public function delete(ManagerRegistry $doctrine, Formateur $formateur = null): Response
+    {   
+        if ($formateur){
+            $entityManager = $doctrine->getManager();
+            $entityManager->remove($formateur);
 
+            foreach ($formateur->getSessions() as $session) 
+            {
+                $formateur->removeSession($session);
+                $entityManager->remove($session); 
+            }
+            $entityManager->flush();
+        }
+        
         return $this->redirectToRoute('app_formateur');
     }
 
-
-    // RAJOUTER UN TO STRING AVEC NOM PRENOM 
 }

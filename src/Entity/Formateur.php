@@ -133,4 +133,9 @@ class Formateur
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->nom. ' ' . $this->prenom;
+    }
 }

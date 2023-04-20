@@ -69,25 +69,39 @@ class StagiaireController extends AbstractController
 
     // Afficher les details d'un stagiaire
     #[Route('/stagiaire/{id}', name: 'detail_stagiaire')]
-    public function detail(ManagerRegistry $doctrine, Stagiaire $stagiaire): Response
+    public function detail(ManagerRegistry $doctrine, Stagiaire $stagiaire = null): Response
     {   
+
+        if ($stagiaire)
+        {
         $entityManager = $doctrine->getManager();
         $sessions = $entityManager->getRepository(Session::class)->findAll();
         return $this->render('stagiaire/detail.html.twig', [
             'stagiaire' => $stagiaire,
             'sessions' => $sessions
         ]);
+        }
+        else
+        {
+            return $this->redirectToRoute('app_stagiaire'); 
+        }
     }
 
     // Supprimer un stagiaire
     #[Route('admin/stagiaire/{id}/delete', name: 'delete_stagiaire')]
-    public function delete(ManagerRegistry $doctrine, Stagiaire $stagiaire): Response
-    {
+    public function delete(ManagerRegistry $doctrine, Stagiaire $stagiaire = null): Response
+    {   
+        if ($stagiaire){
         $entityManager = $doctrine->getManager();
         $entityManager->remove($stagiaire);
         $entityManager->flush();
 
         return $this->redirectToRoute('app_stagiaire');
+        }
+        else
+        {
+            return $this->redirectToRoute('app_stagiaire');   
+        }
     }
 
 }
